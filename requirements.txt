@@ -4,3 +4,4 @@ openpyxl
 plotly
 requests
 beautifulsoup4
+playwright
