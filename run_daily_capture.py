@@ -1,6 +1,7 @@
 from pathlib import Path
 import pandas as pd
-from collector import fetch_metal_prices, MASTER_COLUMNS
+
+from collector import fetch_metal_prices, load_master_columns
 
 
 DATA_DIR = Path("data")
@@ -10,21 +11,25 @@ PINK_SHEET_FILE = DATA_DIR / "pink_sheet.csv"
 def ensure_data_file():
     DATA_DIR.mkdir(exist_ok=True)
 
+    columns = load_master_columns()
+
     if not PINK_SHEET_FILE.exists():
-        df = pd.DataFrame(columns=MASTER_COLUMNS)
+        df = pd.DataFrame(columns=columns)
         df.to_csv(PINK_SHEET_FILE, index=False)
 
 
 def load_existing_data():
     ensure_data_file()
+
     df = pd.read_csv(PINK_SHEET_FILE)
 
-    # 🔴 If old structure exists, upgrade it
-    for col in MASTER_COLUMNS:
+    columns = load_master_columns()
+
+    for col in columns:
         if col not in df.columns:
             df[col] = None
 
-    return df[MASTER_COLUMNS]
+    return df[columns]
 
 
 def save_data(df):
@@ -43,7 +48,7 @@ def main():
         existing_df = pd.concat([pd.DataFrame([row]), existing_df], ignore_index=True)
 
     save_data(existing_df)
-    print("Updated with full index structure.")
+    print("Master-driven update complete.")
 
 
 if __name__ == "__main__":
