@@ -5,6 +5,8 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+from collector import fetch_metal_prices
+
 
 APP_TITLE = "Aluminium Market Index Bulletin – Daily Pink Sheet"
 DATA_DIR = Path("data")
@@ -14,9 +16,6 @@ PINK_SHEET_FILE = DATA_DIR / "pink_sheet.csv"
 st.set_page_config(page_title=APP_TITLE, layout="wide")
 
 
-# --------------------------
-# FILE SETUP
-# --------------------------
 def ensure_files():
     DATA_DIR.mkdir(exist_ok=True)
 
@@ -52,9 +51,6 @@ def save_data(df):
     df_copy.to_csv(PINK_SHEET_FILE, index=False)
 
 
-# --------------------------
-# EXCEL EXPORT
-# --------------------------
 def make_excel(df):
     output = io.BytesIO()
 
@@ -66,9 +62,6 @@ def make_excel(df):
     return output
 
 
-# --------------------------
-# APP START
-# --------------------------
 df = load_data()
 
 st.title(APP_TITLE)
@@ -76,8 +69,27 @@ st.caption("Phase 1: Data Collection Only")
 
 st.divider()
 
+
 # --------------------------
-# DATA ENTRY SECTION
+# AUTOMATION BUTTON
+# --------------------------
+st.subheader("Automated Capture")
+
+if st.button("Run Daily Capture (Manual Trigger)"):
+    new_df = fetch_metal_prices()
+
+    for _, new_row in new_df.iterrows():
+        df = df[df["Date"] != new_row["Date"]]
+        df = pd.concat([pd.DataFrame([new_row]), df], ignore_index=True)
+
+    save_data(df)
+
+    st.success("Automated capture completed.")
+    st.rerun()
+
+
+# --------------------------
+# MANUAL ENTRY (KEEP)
 # --------------------------
 st.subheader("Enter Daily Prices")
 
@@ -112,10 +124,7 @@ with st.form("data_entry_form"):
             "Pitch (USD/t)": pitch,
         }
 
-        # Remove existing same date
         df = df[df["Date"] != new_row["Date"]]
-
-        # Append new row
         df = pd.concat([pd.DataFrame([new_row]), df], ignore_index=True)
 
         save_data(df)
@@ -125,7 +134,7 @@ with st.form("data_entry_form"):
 
 
 # --------------------------
-# DISPLAY SECTION
+# DISPLAY
 # --------------------------
 st.divider()
 
@@ -136,8 +145,9 @@ if not df.empty:
 st.subheader("Last 15 Days")
 st.dataframe(df.head(15), use_container_width=True, hide_index=True, height=400)
 
+
 # --------------------------
-# DOWNLOAD SECTION
+# DOWNLOAD
 # --------------------------
 st.divider()
 
