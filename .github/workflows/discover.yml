@@ -1,0 +1,34 @@
+name: Discover Metal Titles
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pandas requests beautifulsoup4
+
+      - name: Run discovery
+        run: python discover_titles.py
+
+      - name: Commit discovered file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/discovered_index_list.csv
+          git commit -m "Discovered Metal.com index titles"
+          git push
