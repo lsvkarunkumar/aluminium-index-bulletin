@@ -11,12 +11,12 @@ DATA_DIR = Path("data")
 PINK_SHEET_FILE = DATA_DIR / "pink_sheet.csv"
 
 
-st.set_page_config(
-    page_title=APP_TITLE,
-    layout="wide",
-)
+st.set_page_config(page_title=APP_TITLE, layout="wide")
 
 
+# --------------------------
+# FILE SETUP
+# --------------------------
 def ensure_files():
     DATA_DIR.mkdir(exist_ok=True)
 
@@ -33,11 +33,11 @@ def ensure_files():
         df.to_csv(PINK_SHEET_FILE, index=False)
 
 
-def load_pink_sheet():
+def load_data():
     ensure_files()
     df = pd.read_csv(PINK_SHEET_FILE)
 
-    if "Date" in df.columns:
+    if not df.empty:
         df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
         df = df.sort_values("Date", ascending=False)
         df["Date"] = df["Date"].dt.strftime("%Y-%m-%d")
@@ -45,99 +45,114 @@ def load_pink_sheet():
     return df
 
 
-def make_excel_download(df):
+def save_data(df):
+    df_copy = df.copy()
+    df_copy["Date"] = pd.to_datetime(df_copy["Date"], errors="coerce")
+    df_copy = df_copy.sort_values("Date", ascending=False)
+    df_copy.to_csv(PINK_SHEET_FILE, index=False)
+
+
+# --------------------------
+# EXCEL EXPORT
+# --------------------------
+def make_excel(df):
     output = io.BytesIO()
 
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         df.to_excel(writer, index=False, sheet_name="01_Pink_Sheet")
-
-        last_15 = df.head(15)
-        last_15.to_excel(writer, index=False, sheet_name="02_Last_15_Days")
-
-        workbook = writer.book
-
-        for sheet_name in workbook.sheetnames:
-            ws = workbook[sheet_name]
-
-            ws.insert_rows(1, 5)
-
-            max_col = ws.max_column
-
-            ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=max_col)
-            ws.cell(row=1, column=1).value = APP_TITLE
-
-            ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=max_col)
-            ws.cell(row=2, column=1).value = "Official Daily Price Sheet – Aluminium Value Chain"
-
-            ws.cell(row=3, column=1).value = "Last Updated:"
-            ws.cell(row=3, column=2).value = datetime.now().strftime("%Y-%m-%d %H:%M")
-
-            ws.cell(row=4, column=1).value = "Data Mode:"
-            ws.cell(row=4, column=2).value = "Phase 1 – Data Collection Only"
-
-            ws.cell(row=5, column=1).value = "Source:"
-            ws.cell(row=5, column=2).value = "Metal.com / SMM"
-
-            ws.freeze_panes = "A7"
-
-            for col in ws.columns:
-                max_length = 0
-                col_letter = col[0].column_letter
-                for cell in col:
-                    if cell.value:
-                        max_length = max(max_length, len(str(cell.value)))
-                ws.column_dimensions[col_letter].width = min(max_length + 3, 35)
+        df.head(15).to_excel(writer, index=False, sheet_name="02_Last_15_Days")
 
     output.seek(0)
     return output
 
 
-ensure_files()
-df = load_pink_sheet()
+# --------------------------
+# APP START
+# --------------------------
+df = load_data()
 
 st.title(APP_TITLE)
-st.caption("Phase 1: Data Collection Only | One row per day | Latest date on top")
+st.caption("Phase 1: Data Collection Only")
 
 st.divider()
 
-col1, col2, col3 = st.columns(3)
+# --------------------------
+# DATA ENTRY SECTION
+# --------------------------
+st.subheader("Enter Daily Prices")
 
-with col1:
-    st.metric("Total Captured Days", len(df))
+with st.form("data_entry_form"):
+    col1, col2, col3 = st.columns(3)
 
-with col2:
-    latest_date = df["Date"].iloc[0] if not df.empty else "-"
-    st.metric("Latest Date", latest_date)
+    with col1:
+        date = st.date_input("Date", datetime.today())
 
-with col3:
-    st.metric("Fixed Benchmark Columns", 4)
+    with col2:
+        a00 = st.number_input("A00 Aluminium (USD/t)", value=0.0)
 
-st.subheader("Latest Pink Sheet Row")
+    with col3:
+        cpc = st.number_input("CPC (USD/t)", value=0.0)
 
+    col4, col5 = st.columns(2)
+
+    with col4:
+        anode = st.number_input("Prebaked Anode (USD/t)", value=0.0)
+
+    with col5:
+        pitch = st.number_input("Pitch (USD/t)", value=0.0)
+
+    submit = st.form_submit_button("Add / Update Entry")
+
+    if submit:
+        new_row = {
+            "Date": date.strftime("%Y-%m-%d"),
+            "A00 Aluminium (USD/t)": a00,
+            "CPC (USD/t)": cpc,
+            "Prebaked Anode (USD/t)": anode,
+            "Pitch (USD/t)": pitch,
+        }
+
+        # Remove existing same date
+        df = df[df["Date"] != new_row["Date"]]
+
+        # Append new row
+        df = pd.concat([pd.DataFrame([new_row]), df], ignore_index=True)
+
+        save_data(df)
+
+        st.success("Data saved successfully.")
+        st.rerun()
+
+
+# --------------------------
+# DISPLAY SECTION
+# --------------------------
+st.divider()
+
+st.subheader("Latest Entry")
 if not df.empty:
     st.dataframe(df.head(1), use_container_width=True, hide_index=True)
-else:
-    st.warning("No data available yet.")
 
-st.subheader("Last 15 Days – Scrollable Pink Sheet")
-st.dataframe(df.head(15), use_container_width=True, hide_index=True, height=420)
+st.subheader("Last 15 Days")
+st.dataframe(df.head(15), use_container_width=True, hide_index=True, height=400)
 
-st.subheader("Download Data")
+# --------------------------
+# DOWNLOAD SECTION
+# --------------------------
+st.divider()
 
-excel_file = make_excel_download(df)
+st.subheader("Download")
+
+excel = make_excel(df)
 
 st.download_button(
-    label="Download Excel Bulletin",
-    data=excel_file,
+    "Download Excel",
+    data=excel,
     file_name="Aluminium_Market_Index_Bulletin.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 )
 
-csv_file = df.to_csv(index=False).encode("utf-8")
-
 st.download_button(
-    label="Download Pink Sheet CSV",
-    data=csv_file,
+    "Download CSV",
+    data=df.to_csv(index=False),
     file_name="pink_sheet.csv",
-    mime="text/csv",
 )
