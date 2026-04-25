@@ -1,0 +1,12 @@
+Section,Sub Section,Index Name,Column Name,Currency,Unit,Active
+Primary Aluminium,Ingot,A00 Aluminium,A00 Aluminium (USD/t),USD,t,TRUE
+Primary Aluminium,Premium,A00 Premium,A00 Premium (USD/t),USD,t,TRUE
+Alumina,Domestic,Shanxi Alumina,Alumina Shanxi (USD/t),USD,t,TRUE
+Alumina,Domestic,Henan Alumina,Alumina Henan (USD/t),USD,t,TRUE
+Alumina,Domestic,Shandong Alumina,Alumina Shandong (USD/t),USD,t,TRUE
+Bauxite,Index,Bauxite Index,Bauxite Index (USD/t),USD,t,TRUE
+Carbon Raw Materials,CPC,CPC,CPC (USD/t),USD,t,TRUE
+Carbon Products,Anode,Prebaked Anode,Prebaked Anode (USD/t),USD,t,TRUE
+Carbon Raw Materials,Pitch,Pitch,Pitch (USD/t),USD,t,TRUE
+Scrap,Alloy,ADC12 Scrap,Scrap ADC12 (USD/t),USD,t,TRUE
+Market,Arbitrage,Import Arbitrage,Import Arbitrage (USD/t),USD,t,TRUE
