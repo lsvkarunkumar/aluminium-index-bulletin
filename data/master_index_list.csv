@@ -1,12 +1,46 @@
 Section,Sub Section,Index Name,Column Name,Currency,Unit,Active
 Primary Aluminium,Ingot,A00 Aluminium,A00 Aluminium (USD/t),USD,t,TRUE
 Primary Aluminium,Premium,A00 Premium,A00 Premium (USD/t),USD,t,TRUE
+Primary Aluminium,Regional,East China Aluminium,East China Aluminium (USD/t),USD,t,TRUE
+Primary Aluminium,Regional,South China Aluminium,South China Aluminium (USD/t),USD,t,TRUE
+Primary Aluminium,Regional,Central China Aluminium,Central China Aluminium (USD/t),USD,t,TRUE
+Primary Aluminium,Regional,Southwest China Aluminium,Southwest China Aluminium (USD/t),USD,t,TRUE
+
 Alumina,Domestic,Shanxi Alumina,Alumina Shanxi (USD/t),USD,t,TRUE
 Alumina,Domestic,Henan Alumina,Alumina Henan (USD/t),USD,t,TRUE
 Alumina,Domestic,Shandong Alumina,Alumina Shandong (USD/t),USD,t,TRUE
-Bauxite,Index,Bauxite Index,Bauxite Index (USD/t),USD,t,TRUE
+Alumina,Domestic,Guangxi Alumina,Alumina Guangxi (USD/t),USD,t,TRUE
+Alumina,Domestic,Guizhou Alumina,Alumina Guizhou (USD/t),USD,t,TRUE
+Alumina,Imported,Australia Alumina,Australia Alumina (USD/t),USD,t,TRUE
+
+Bauxite,Domestic,China Bauxite Index,Bauxite China (USD/t),USD,t,TRUE
+Bauxite,Imported,Guinea Bauxite,Guinea Bauxite (USD/t),USD,t,TRUE
+Bauxite,Imported,Australia Bauxite,Australia Bauxite (USD/t),USD,t,TRUE
+
 Carbon Raw Materials,CPC,CPC,CPC (USD/t),USD,t,TRUE
-Carbon Products,Anode,Prebaked Anode,Prebaked Anode (USD/t),USD,t,TRUE
 Carbon Raw Materials,Pitch,Pitch,Pitch (USD/t),USD,t,TRUE
-Scrap,Alloy,ADC12 Scrap,Scrap ADC12 (USD/t),USD,t,TRUE
+
+Carbon Products,Anode,Prebaked Anode,Prebaked Anode (USD/t),USD,t,TRUE
+
+Scrap,Aluminium Scrap,UBC Scrap,UBC Scrap (USD/t),USD,t,TRUE
+Scrap,Aluminium Scrap,Tense Scrap,Tense Scrap (USD/t),USD,t,TRUE
+Scrap,Aluminium Scrap,Twitch Scrap,Twitch Scrap (USD/t),USD,t,TRUE
+Scrap,Aluminium Scrap,Zorba Scrap,Zorba Scrap (USD/t),USD,t,TRUE
+
+Alloy,Secondary Alloy,ADC12 Alloy,ADC12 Alloy (USD/t),USD,t,TRUE
+Alloy,Secondary Alloy,A356 Alloy,A356 Alloy (USD/t),USD,t,TRUE
+Alloy,Secondary Alloy,A380 Alloy,A380 Alloy (USD/t),USD,t,TRUE
+
+Processing Products,Flat Products,Aluminium Plate,Aluminium Plate (USD/t),USD,t,TRUE
+Processing Products,Flat Products,Aluminium Coil,Aluminium Coil (USD/t),USD,t,TRUE
+Processing Products,Long Products,Aluminium Rod,Aluminium Rod (USD/t),USD,t,TRUE
+Processing Products,Long Products,Aluminium Billet,Aluminium Billet (USD/t),USD,t,TRUE
+Processing Products,Extrusion,Aluminium Extrusion,Aluminium Extrusion (USD/t),USD,t,TRUE
+
 Market,Arbitrage,Import Arbitrage,Import Arbitrage (USD/t),USD,t,TRUE
+Market,Arbitrage,Export Arbitrage,Export Arbitrage (USD/t),USD,t,TRUE
+Market,Spread,China-LME Spread,China-LME Spread (USD/t),USD,t,TRUE
+
+International,Reference,LME Aluminium 3M,LME Aluminium 3M (USD/t),USD,t,TRUE
+International,Reference,SHFE Aluminium,SHFE Aluminium (USD/t),USD,t,TRUE
+International,Spread,Spot vs Futures Spread,Spot vs Futures Spread (USD/t),USD,t,TRUE
