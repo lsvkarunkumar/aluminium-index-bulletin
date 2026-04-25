@@ -1,8 +1,9 @@
-import pandas as pd
 from datetime import datetime
 from pathlib import Path
-import requests
-from bs4 import BeautifulSoup
+import re
+
+import pandas as pd
+from playwright.sync_api import sync_playwright
 
 
 URL = "https://www.metal.com/Aluminum?currency_type=2"
@@ -12,109 +13,96 @@ OUT_FILE = DATA_DIR / "discovered_index_list.csv"
 
 
 def clean(text):
-    return " ".join(str(text).split())
+    return re.sub(r"\s+", " ", str(text)).strip()
 
 
-def is_valid_index(text):
+def is_valid_title(text):
     t = text.lower()
 
-    valid_keywords = [
-        "aluminium", "aluminum", "alumina", "bauxite",
-        "cpc", "anode", "pitch", "scrap", "alloy",
-        "billet", "rod", "plate", "coil", "premium", "index"
-    ]
-
-    invalid_keywords = [
-        "announcement", "about us", "contact", "policy",
-        "terms", "privacy", "subscribe", "download app",
-        "copyright", "whatsapp", "sitemap", "sign in",
-        "methodology", "events", "news and reports"
-    ]
-
-    if any(x in t for x in invalid_keywords):
+    if len(t) < 4 or len(t) > 100:
         return False
 
-    return any(x in t for x in valid_keywords)
+    invalid = [
+        "announcement", "sign in", "download", "privacy", "terms",
+        "copyright", "whatsapp", "subscribe", "methodology",
+        "about us", "contact us", "sitemap", "news", "events"
+    ]
+
+    valid = [
+        "aluminum", "aluminium", "alumina", "bauxite", "cpc",
+        "anode", "pitch", "scrap", "alloy", "billet", "rod",
+        "plate", "coil", "premium", "index", "ingot"
+    ]
+
+    if any(x in t for x in invalid):
+        return False
+
+    return any(x in t for x in valid)
 
 
 def main():
     DATA_DIR.mkdir(exist_ok=True)
 
+    titles = []
+
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(
+            viewport={"width": 1600, "height": 1200},
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 Chrome/120 Safari/537.36"
+            ),
+        )
+
+        page.goto(URL, wait_until="networkidle", timeout=90000)
+
+        for _ in range(8):
+            page.mouse.wheel(0, 1500)
+            page.wait_for_timeout(1500)
+
+        elements = page.locator("body *").all()
+
+        for el in elements:
+            try:
+                text = clean(el.inner_text(timeout=500))
+                if is_valid_title(text):
+                    titles.append(text)
+            except Exception:
+                continue
+
+        browser.close()
+
+    seen = set()
     rows = []
 
-    try:
-        headers = {
-            "User-Agent": "Mozilla/5.0"
-        }
+    for title in titles:
+        key = title.lower()
 
-        response = requests.get(URL, headers=headers, timeout=30)
-        print("Status code:", response.status_code)
-        print("HTML length:", len(response.text))
+        if key in seen:
+            continue
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        seen.add(key)
 
-        candidates = []
+        rows.append(
+            {
+                "Section": "",
+                "Sub Section": "",
+                "Index Name": title,
+                "Column Name": f"{title} (USD/t)",
+                "Currency": "USD",
+                "Unit": "t",
+                "Source URL": URL,
+                "Active": "TRUE",
+                "Discovered At": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "Review Status": "Pending",
+            }
+        )
 
-        for tag in soup.find_all(["tr", "li", "div", "span", "a"]):
-            text = clean(tag.get_text(" ", strip=True))
-
-            if len(text) < 5:
-                continue
-
-            if len(text) > 120:
-                continue
-
-            if is_valid_index(text):
-                candidates.append(text)
-
-        seen = set()
-
-        for name in candidates:
-            key = name.lower()
-
-            if key in seen:
-                continue
-
-            seen.add(key)
-
-            rows.append(
-                {
-                    "Section": "",
-                    "Sub Section": "",
-                    "Index Name": name,
-                    "Column Name": f"{name} (USD/t)",
-                    "Currency": "USD",
-                    "Unit": "t",
-                    "Source URL": URL,
-                    "Active": "TRUE",
-                    "Discovered At": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                    "Review Status": "Pending",
-                }
-            )
-
-    except Exception as e:
-        print("Discovery failed:", str(e))
-
-    df = pd.DataFrame(
-        rows,
-        columns=[
-            "Section",
-            "Sub Section",
-            "Index Name",
-            "Column Name",
-            "Currency",
-            "Unit",
-            "Source URL",
-            "Active",
-            "Discovered At",
-            "Review Status",
-        ],
-    )
-
+    df = pd.DataFrame(rows)
     df.to_csv(OUT_FILE, index=False, encoding="utf-8-sig")
 
-    print(f"Discovery completed. Rows saved: {len(df)}")
-    print(f"Output file: {OUT_FILE}")
+    print(f"Browser discovery completed. Rows saved: {len(df)}")
 
 
 if __name__ == "__main__":
