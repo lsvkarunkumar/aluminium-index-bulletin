@@ -3,12 +3,15 @@ name: Discover Metal Titles
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   run:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repo
@@ -20,7 +23,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install pandas requests beautifulsoup4
+        run: |
+          pip install pandas playwright
+          python -m playwright install chromium
 
       - name: Run discovery
         run: python discover_titles.py
@@ -30,5 +35,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/discovered_index_list.csv
-          git commit -m "Discovered Metal.com index titles"
+          git diff --cached --quiet || git commit -m "Browser discovered Metal.com index titles"
           git push
