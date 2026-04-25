@@ -1,37 +1,28 @@
-from datetime import datetime
 import pandas as pd
+from datetime import datetime
 
 
-PINK_SHEET_COLUMNS = [
+# 🔴 TEMP MASTER INDEX LIST (we will refine later from site)
+MASTER_COLUMNS = [
     "Date",
     "A00 Aluminium (USD/t)",
+    "A00 Premium (USD/t)",
+    "Alumina Shanxi (USD/t)",
+    "Alumina Henan (USD/t)",
+    "Alumina Shandong (USD/t)",
+    "Bauxite Index (USD/t)",
     "CPC (USD/t)",
     "Prebaked Anode (USD/t)",
     "Pitch (USD/t)",
+    "Scrap ADC12 (USD/t)",
+    "Import Arbitrage (USD/t)",
 ]
 
 
 def fetch_metal_prices():
-    """
-    Phase 1 collector.
-
-    Current status:
-    - System-ready structure
-    - Placeholder values until real Metal.com extraction is added
-    - Keeps columns stable for Pink Sheet
-
-    Next step:
-    - Replace None values with parsed values from Metal.com / authorized source.
-    """
-
     today = datetime.today().strftime("%Y-%m-%d")
 
-    row = {
-        "Date": today,
-        "A00 Aluminium (USD/t)": None,
-        "CPC (USD/t)": None,
-        "Prebaked Anode (USD/t)": None,
-        "Pitch (USD/t)": None,
-    }
+    row = {col: None for col in MASTER_COLUMNS}
+    row["Date"] = today
 
-    return pd.DataFrame([row], columns=PINK_SHEET_COLUMNS)
+    return pd.DataFrame([row], columns=MASTER_COLUMNS)
