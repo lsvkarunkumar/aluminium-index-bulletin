@@ -1,28 +1,28 @@
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 
 
-# 🔴 TEMP MASTER INDEX LIST (we will refine later from site)
-MASTER_COLUMNS = [
-    "Date",
-    "A00 Aluminium (USD/t)",
-    "A00 Premium (USD/t)",
-    "Alumina Shanxi (USD/t)",
-    "Alumina Henan (USD/t)",
-    "Alumina Shandong (USD/t)",
-    "Bauxite Index (USD/t)",
-    "CPC (USD/t)",
-    "Prebaked Anode (USD/t)",
-    "Pitch (USD/t)",
-    "Scrap ADC12 (USD/t)",
-    "Import Arbitrage (USD/t)",
-]
+DATA_DIR = Path("data")
+MASTER_FILE = DATA_DIR / "master_index_list.csv"
+
+
+def load_master_columns():
+    master = pd.read_csv(MASTER_FILE)
+
+    active = master[master["Active"] == True]
+
+    columns = ["Date"] + active["Column Name"].tolist()
+
+    return columns
 
 
 def fetch_metal_prices():
     today = datetime.today().strftime("%Y-%m-%d")
 
-    row = {col: None for col in MASTER_COLUMNS}
+    columns = load_master_columns()
+
+    row = {col: None for col in columns}
     row["Date"] = today
 
-    return pd.DataFrame([row], columns=MASTER_COLUMNS)
+    return pd.DataFrame([row], columns=columns)
