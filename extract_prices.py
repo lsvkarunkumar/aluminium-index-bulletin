@@ -1,4 +1,5 @@
 from datetime import datetime
+from pathlib import Path
 import re
 
 import pandas as pd
@@ -6,6 +7,11 @@ from playwright.sync_api import sync_playwright
 
 
 URL = "https://www.metal.com/Aluminum?currency_type=2"
+
+DATA_DIR = Path("data")
+DEBUG_TEXT_FILE = DATA_DIR / "debug_visible_text.txt"
+DEBUG_HTML_FILE = DATA_DIR / "debug_page.html"
+
 
 TARGETS = {
     "SMM Aluminum Index (USD/t)": "SMM Aluminum Index",
@@ -19,65 +25,54 @@ def clean(text):
     return re.sub(r"\s+", " ", str(text)).strip()
 
 
-def extract_number_after_keyword(full_text, keyword):
-    idx = full_text.lower().find(keyword.lower())
+def fetch_debug_content():
+    DATA_DIR.mkdir(exist_ok=True)
 
-    if idx == -1:
-        return None
-
-    snippet = full_text[idx: idx + 180]
-
-    numbers = re.findall(r"\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?", snippet)
-
-    if not numbers:
-        return None
-
-    for n in numbers:
-        try:
-            value = float(n.replace(",", ""))
-            if value > 1:
-                return value
-        except Exception:
-            continue
-
-    return None
-
-
-def fetch_visible_text():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
 
         page = browser.new_page(
-            viewport={"width": 1600, "height": 1200},
+            viewport={"width": 1600, "height": 1400},
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 Chrome/120 Safari/537.36"
             ),
         )
 
-        page.set_default_timeout(15000)
+        page.goto(URL, wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(12000)
 
-        page.goto(URL, wait_until="domcontentloaded", timeout=45000)
-        page.wait_for_timeout(8000)
+        for _ in range(10):
+            page.mouse.wheel(0, 1500)
+            page.wait_for_timeout(1200)
 
-        for _ in range(8):
-            page.mouse.wheel(0, 1200)
-            page.wait_for_timeout(1000)
-
-        text = clean(page.locator("body").inner_text(timeout=15000))
+        visible_text = page.locator("body").inner_text(timeout=20000)
+        html = page.content()
 
         browser.close()
 
-    return text
+    DEBUG_TEXT_FILE.write_text(visible_text, encoding="utf-8")
+    DEBUG_HTML_FILE.write_text(html, encoding="utf-8")
+
+    return clean(visible_text)
 
 
 def main():
-    full_text = fetch_visible_text()
+    text = fetch_debug_content()
+
+    print("Debug files created:")
+    print(DEBUG_TEXT_FILE)
+    print(DEBUG_HTML_FILE)
+
+    print("\nKeyword check:")
+    for _, keyword in TARGETS.items():
+        found = keyword.lower() in text.lower()
+        print(f"{keyword}: {found}")
 
     row = {"Date": datetime.today().strftime("%Y-%m-%d")}
 
-    for column_name, keyword in TARGETS.items():
-        row[column_name] = extract_number_after_keyword(full_text, keyword)
+    for col in TARGETS:
+        row[col] = None
 
     df = pd.DataFrame([row])
 
