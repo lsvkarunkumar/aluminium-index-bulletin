@@ -20,23 +20,16 @@ FIXED_INDICES = [
 ]
 
 
-st.set_page_config(
-    page_title=APP_TITLE,
-    layout="wide",
-)
+st.set_page_config(page_title=APP_TITLE, layout="wide")
 
 
-# -----------------------------
-# GLOBAL STYLE
-# -----------------------------
 st.markdown(
     """
     <style>
     .block-container {
-        padding-top: 1.2rem;
-        padding-bottom: 1rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-top: 1.0rem;
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
         max-width: 100%;
     }
 
@@ -50,25 +43,19 @@ st.markdown(
         margin-bottom: 0.2rem !important;
     }
 
-    h2, h3 {
-        font-weight: 500 !important;
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.4rem !important;
+    .top-caption {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 10px;
     }
 
     .section-title {
         font-size: 18px;
         font-weight: 500;
-        margin-top: 16px;
-        margin-bottom: 8px;
+        margin-top: 14px;
+        margin-bottom: 7px;
         border-bottom: 1px solid #d9d9d9;
         padding-bottom: 4px;
-    }
-
-    .top-caption {
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 12px;
     }
 
     .metric-card {
@@ -104,11 +91,12 @@ st.markdown(
         border: 1px solid #d9d9d9;
     }
 
-    .download-box {
+    .download-card {
         border: 1px solid #d9d9d9;
         background: #fafafa;
-        padding: 12px;
+        padding: 10px 12px;
         border-radius: 4px;
+        margin-bottom: 8px;
     }
 
     .stAlert {
@@ -120,9 +108,6 @@ st.markdown(
 )
 
 
-# -----------------------------
-# DATA FUNCTIONS
-# -----------------------------
 def format_date_for_display(series):
     return pd.to_datetime(series, errors="coerce").dt.strftime("%d/%b/%Y")
 
@@ -155,15 +140,9 @@ def clean_display_df(df):
     return out
 
 
-def numeric_col(df, col):
-    if col not in df.columns:
-        return pd.Series(dtype="float64")
-    return pd.to_numeric(df[col], errors="coerce")
-
-
 def latest_value_and_delta(df, col):
     if col not in df.columns:
-        return "-", "-"
+        return "-", "Column missing"
 
     temp = df[["Date", col]].copy()
     temp[col] = pd.to_numeric(temp[col], errors="coerce")
@@ -178,8 +157,8 @@ def latest_value_and_delta(df, col):
         previous = temp.iloc[1][col]
         change = latest - previous
         pct = (change / previous * 100) if previous != 0 else None
-
         sign = "+" if change > 0 else ""
+
         if pct is None:
             delta = f"{sign}{change:,.2f}"
         else:
@@ -232,15 +211,14 @@ def excel_download_bytes():
 
     df = load_data()
     output = io.BytesIO()
+
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         clean_display_df(df).to_excel(writer, index=False, sheet_name="Pink Sheet")
+
     output.seek(0)
     return output.read()
 
 
-# -----------------------------
-# LOAD
-# -----------------------------
 df = load_data()
 
 st.markdown(f"<h1>{APP_TITLE}</h1>", unsafe_allow_html=True)
@@ -254,8 +232,37 @@ if df.empty:
     st.stop()
 
 display_df = clean_display_df(df)
-
 latest_date = display_df["Date"].iloc[0] if not display_df.empty else "-"
+
+
+# -----------------------------
+# TOP DOWNLOAD SECTION
+# -----------------------------
+st.markdown('<div class="section-title">Download Bulletin</div>', unsafe_allow_html=True)
+
+d1, d2, d3 = st.columns([1, 1, 2])
+
+with d1:
+    st.download_button(
+        label="Download Excel",
+        data=excel_download_bytes(),
+        file_name="Aluminium_Market_Index_Bulletin.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        use_container_width=True,
+    )
+
+with d2:
+    st.download_button(
+        label="Download CSV",
+        data=display_df.to_csv(index=False).encode("utf-8"),
+        file_name="pink_sheet.csv",
+        mime="text/csv",
+        use_container_width=True,
+    )
+
+with d3:
+    st.info("Downloads are placed at top for quick access. CSV is raw data; Excel is formatted Pink Sheet.")
+
 
 # -----------------------------
 # STATUS STRIP
@@ -301,7 +308,8 @@ with c3:
     )
 
 with c4:
-    missing_values_today = display_df.iloc[0].replace("", pd.NA).isna().sum() - 0
+    latest_row = display_df.iloc[0]
+    missing_values_today = latest_row.drop(labels=["Date"], errors="ignore").replace("", pd.NA).isna().sum()
     st.markdown(
         f"""
         <div class="metric-card">
@@ -346,21 +354,33 @@ g1, g2 = st.columns(2)
 
 with g1:
     fig = make_chart(df, FIXED_INDICES[0], FIXED_INDICES[0])
-    st.plotly_chart(fig, use_container_width=True) if fig else st.info(f"No numeric data available for {FIXED_INDICES[0]}")
+    if fig is not None:
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info(f"No numeric data available for {FIXED_INDICES[0]}")
 
 with g2:
     fig = make_chart(df, FIXED_INDICES[1], FIXED_INDICES[1])
-    st.plotly_chart(fig, use_container_width=True) if fig else st.info(f"No numeric data available for {FIXED_INDICES[1]}")
+    if fig is not None:
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info(f"No numeric data available for {FIXED_INDICES[1]}")
 
 g3, g4 = st.columns(2)
 
 with g3:
     fig = make_chart(df, FIXED_INDICES[2], FIXED_INDICES[2])
-    st.plotly_chart(fig, use_container_width=True) if fig else st.info(f"No numeric data available for {FIXED_INDICES[2]}")
+    if fig is not None:
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info(f"No numeric data available for {FIXED_INDICES[2]}")
 
 with g4:
     fig = make_chart(df, FIXED_INDICES[3], FIXED_INDICES[3])
-    st.plotly_chart(fig, use_container_width=True) if fig else st.info(f"No numeric data available for {FIXED_INDICES[3]}")
+    if fig is not None:
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info(f"No numeric data available for {FIXED_INDICES[3]}")
 
 
 # -----------------------------
@@ -394,7 +414,7 @@ with left:
 
     fig = make_chart(df, selected_index, selected_index)
 
-    if fig:
+    if fig is not None:
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("No numeric data available for selected index.")
@@ -441,30 +461,8 @@ with right:
                 plot_bgcolor="white",
                 paper_bgcolor="white",
             )
+            fig.update_xaxes(showgrid=True, gridcolor="#eeeeee")
+            fig.update_yaxes(showgrid=True, gridcolor="#eeeeee")
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("No numeric data available for selected comparison indices.")
-
-
-# -----------------------------
-# DOWNLOAD
-# -----------------------------
-st.markdown('<div class="section-title">Download</div>', unsafe_allow_html=True)
-
-d1, d2 = st.columns([1, 1])
-
-with d1:
-    st.download_button(
-        label="Download Formatted Excel Pink Sheet",
-        data=excel_download_bytes(),
-        file_name="Aluminium_Market_Index_Bulletin.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    )
-
-with d2:
-    st.download_button(
-        label="Download Raw CSV",
-        data=display_df.to_csv(index=False).encode("utf-8"),
-        file_name="pink_sheet.csv",
-        mime="text/csv",
-    )
