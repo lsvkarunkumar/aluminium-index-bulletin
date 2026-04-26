@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+from openpyxl.styles import Font, Alignment
 
 
 DATA_DIR = Path("data")
@@ -15,25 +16,24 @@ def main():
 
         ws = writer.sheets["Pink Sheet"]
 
-        # Auto column width (compact)
+        # 🔹 Set fixed width + wrap text
         for col in ws.columns:
-            max_length = 0
             col_letter = col[0].column_letter
 
+            ws.column_dimensions[col_letter].width = 10  # fixed width
+
             for cell in col:
-                try:
-                    if cell.value:
-                        max_length = max(max_length, len(str(cell.value)))
-                except:
-                    pass
+                cell.alignment = Alignment(wrap_text=True, vertical="center")
 
-            # Set tight width (controlled)
-            ws.column_dimensions[col_letter].width = min(max_length + 2, 25)
+        # 🔹 Set font Arial 10
+        for row in ws.iter_rows():
+            for cell in row:
+                cell.font = Font(name="Arial", size=10)
 
-        # Freeze header
+        # 🔹 Freeze header
         ws.freeze_panes = "A2"
 
-    print("Excel formatted file created.")
+    print("Excel formatted with wrap + Arial 10 + width 10")
 
 
 if __name__ == "__main__":
