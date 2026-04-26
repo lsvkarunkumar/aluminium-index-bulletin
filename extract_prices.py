@@ -4,7 +4,7 @@ import os
 import re
 
 import pandas as pd
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright
 
 
 URL = "https://www.metal.com/Aluminum?currency_type=2"
@@ -83,34 +83,36 @@ def login_if_possible(page):
     try:
         print("Attempting SMM login...")
 
-        page.get_by_text("Sign In", exact=True).click(timeout=8000)
+        page.locator("button.signInButton").first.click(timeout=10000)
         page.wait_for_timeout(3000)
 
-        # Flexible selectors because SMM login page may change.
-        inputs = page.locator("input").all()
+        inputs = page.locator("input")
 
-        if len(inputs) >= 2:
-            inputs[0].fill(SMM_EMAIL)
-            inputs[1].fill(SMM_PASSWORD)
-        else:
-            print("Login fields not found.")
+        if inputs.count() < 2:
+            print("Login input fields not found.")
             return
 
-        button_candidates = ["Sign In", "Login", "Log in"]
+        inputs.nth(0).fill(SMM_EMAIL)
+        inputs.nth(1).fill(SMM_PASSWORD)
+
+        buttons = page.locator("button").all()
         clicked = False
 
-        for label in button_candidates:
+        for btn in buttons:
             try:
-                page.get_by_text(label, exact=True).click(timeout=3000)
-                clicked = True
-                break
+                txt = btn.inner_text(timeout=1000).strip().lower()
+
+                if txt in ["sign in", "login", "log in"]:
+                    btn.click(timeout=3000)
+                    clicked = True
+                    break
             except Exception:
                 pass
 
         if not clicked:
             page.keyboard.press("Enter")
 
-        page.wait_for_timeout(8000)
+        page.wait_for_timeout(10000)
         print("Login attempt completed.")
 
     except Exception as e:
@@ -156,12 +158,6 @@ def fetch_visible_lines():
 
 
 def extract_top_smm_a00(lines):
-    """
-    From hero area:
-    Aluminum Ingot / SMM A00 Aluminum Ingot
-    3,196.21
-    USD/tonne
-    """
     for i, line in enumerate(lines):
         if line.strip().lower() == "aluminum ingot / smm a00 aluminum ingot":
             for j in range(i + 1, min(i + 8, len(lines))):
@@ -196,48 +192,42 @@ def find_item_block(lines, item_name):
 
 
 def extract_price_from_item_block(block):
-    """
-    Table order usually:
-    Item Name
-    SMM Code
-    Unit
-    High
-    Low
-    Average / Index / Latest
-    Change
-    Date
-
-    If High/Low/Average are hidden, block contains only Change + Date.
-    We must NOT use Change as price.
-    """
     if not block:
         return None
 
-    # Remove SMM code, unit, date, signs/change-like tiny values
     useful_numbers = []
 
     for line in block:
         if re.search(r"SMM-[A-Z]+-[A-Z]+-\d+", line):
             continue
+
         if "/" in line and re.search(r"\d{1,2}/\d{1,2}/\d{4}", line):
             continue
-        if any(unit in line.lower() for unit in ["usd/tonne", "usd/dmt", "usd/kg", "cny/mt", "thb/kg", "myr/kg"]):
+
+        if any(
+            unit in line.lower()
+            for unit in [
+                "usd/tonne",
+                "usd/dmt",
+                "usd/kg",
+                "cny/mt",
+                "thb/kg",
+                "myr/kg",
+                "us cent/lb",
+            ]
+        ):
             continue
 
         val = to_float(line)
+
         if val is None:
             continue
 
-        # Real aluminium/smelter material prices are generally > 50.
-        # But small values immediately before date are often change values.
         useful_numbers.append(val)
 
-    # If there are 3+ meaningful numbers, likely High / Low / Average.
-    # Choose the last of first three as Average/Index.
     if len(useful_numbers) >= 3:
         return useful_numbers[2]
 
-    # If only one number is available, it is usually Change, so reject it.
     return None
 
 
