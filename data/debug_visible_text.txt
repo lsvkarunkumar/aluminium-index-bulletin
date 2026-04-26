@@ -1,0 +1,4256 @@
+Metrix
+Announcements
+About Us
+Download APP
+Sign In
+EN
+Markets
+Industry
+Data Center
+News and Reports
+Events
+Methodology
+Subscribe
+Aluminum
+Aluminum Ingot / SMM A00 Aluminum Ingot
+3,196.21
+USD/tonne
+-5.98
+-0.19%
+My Watchlist
+Aluminum Ingot
+Bauxite
+Alumina
+SMM Aluminum Index
+SMM Low - Carbon Aluminum
+Aluminum Alloy Ingot
+Aluminum Based Master Alloy
+High - Purity Alumina
+Petroleum Coke Index
+Imported Petroleum Coke
+Petroleum Coke
+Calcined Petroleum Coke
+Prebaked Anode
+Coal Tar Pitch
+Aluminum Accessory
+Caustic Soda
+Aluminum Hydroxide
+Remelting Billet
+Aluminum Extrusions
+Aluminum Plate / Sheet and Strip
+Aluminum Foil
+Aluminum Cast - rolled Coil
+Aluminum Slab
+Aluminum Billet
+Aluminum Rod
+Imported Scrap
+Aluminum Scrap quotations outside China
+UBC Ingot
+Aluminum Powder
+Needle Coke
+Aluminum Foil Processing Fee
+SHFE
+LME
+SHFE/LME
+Import Arbitrage
+Switch Currency
+Aluminum Ingot
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+SMM A00 Aluminum Ingot
+SMM-AL-AL-001
+	USD/tonne	
+	
+	
+	
+-5.98
+	24/04/2026	
+
+	
+Aluminum Premium CIF Shanghai
+SMM-AL-AL-008
+	USD/tonne	
+	
+	
+	
+-3
+	24/04/2026	
+
+	
+Aluminum Premium In-whs Shanghai
+SMM-AL-AL-009
+	USD/tonne	
+	
+	
+	
+-3
+	24/04/2026	
+
+	
+Aluminum P1020A Premium in-whs dp Rotterdam
+SMM-AL-AL-015
+	USD/tonne	
+	
+	
+	
+-15
+	24/04/2026	
+
+	
+Aluminum P1020A Premium in-whs dup Rotterdam
+SMM-AL-AL-016
+	USD/tonne	
+	
+	
+	
++2.5
+	24/04/2026	
+
+	
+Aluminum Quarterly Premium CIF Japan
+SMM-AL-AL-017
+	USD/tonne	
+	
+	
+	
++156.5
+	26/03/2026	
+
+	
+Aluminum Spot Premium CIF Japan
+SMM-AL-AL-018
+	USD/tonne	
+	
+	
+	
+-10
+	24/04/2026	
+
+	
+Aluminium P1020A premium, DDP Midwest US
+SMM-AL-AL-029
+	US cent/lb	
+	
+	
+	
+-0.13
+	24/04/2026	
+
+	
+Aluminum Premium CIF South Korea
+SMM-AL-AL-011
+	USD/tonne	
+	
+	
+	
+-13
+	24/04/2026	
+
+	
+Aluminum Premium FCA South Korea
+SMM-AL-AL-010
+	USD/tonne	
+	
+	
+	
+-13
+	24/04/2026	
+
+	
+Aluminum P1020A Premium FOB Indonesia
+SMM-AL-AL-007
+	USD/tonne	
+	
+	
+	
+-2
+	24/04/2026	
+
+	
+Aluminum P0610A Premium FOB Indonesia
+SMM-AL-AL-021
+	USD/tonne	
+	
+	
+	
+-2
+	24/04/2026	
+
+	
+Aluminum Premium CIF Thailand
+SMM-AL-AL-012
+	USD/tonne	
+	
+	
+	
+-8
+	24/04/2026	
+
+	
+Aluminum Low-Carbon P1020A
+SMM-AL-AL-013
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Aluminum Low-Carbon P1020A Premium Index
+SMM-AL-AL-014
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+SMM A00 Aluminum Ingot Premium
+SMM-AL-AL-002
+	USD/tonne	
+	
+	
+	
++1.3
+	24/04/2026	
+
+	
+SMM Henan A00 Aluminum Ingot
+SMM-AL-AL-003
+	USD/tonne	
+	
+	
+	
+-3.39
+	24/04/2026	
+
+	
+SMM Foshan A00 Aluminum Ingot
+SMM-AL-AL-005
+	USD/tonne	
+	
+	
+	
+-7.25
+	24/04/2026	
+
+	
+SMM Guangyuan A00 Aluminum Ingot
+SMM-AL-AL-019
+	USD/tonne	
+	
+	
+	
+-4.68
+	24/04/2026	
+
+	
+SMM Henan A00 Aluminum Ingot Premium
+SMM-AL-AL-004
+	USD/tonne	
+	
+	
+	
++3.89
+	24/04/2026	
+
+	
+SMM Foshan A00 Aluminum Ingot Premium
+SMM-AL-AL-006
+	USD/tonne	
+	
+	
+	
++0.03
+	24/04/2026	
+
+	
+SMM Guangyuan A00 Aluminum Ingot Premium
+SMM-AL-AL-020
+	USD/tonne	
+	
+	
+	
++2.6
+	24/04/2026	
+
+	
+SMM Wuxi A00 Aluminum Ingot
+SMM-AL-AL-022
+	USD/tonne	
+	
+	
+	
+-4.68
+	24/04/2026	
+
+	
+SMM Hangzhou A00 Aluminum Ingot
+SMM-AL-AL-023
+	USD/tonne	
+	
+	
+	
+-4.69
+	24/04/2026	
+
+	
+SMM Chongqing A00 Aluminum Ingot
+SMM-AL-AL-024
+	USD/tonne	
+	
+	
+	
+-5.98
+	24/04/2026	
+
+	
+SMM Shenyang A00 Aluminum Ingot
+SMM-AL-AL-025
+	USD/tonne	
+	
+	
+	
+-2.74
+	24/04/2026	
+
+	
+SMM Tianjin A00 Aluminum Ingot
+SMM-AL-AL-026
+	USD/tonne	
+	
+	
+	
+-9.86
+	24/04/2026	
+
+	
+SMM Linyi A00 Aluminum Ingot
+SMM-AL-AL-027
+	USD/tonne	
+	
+	
+	
+-5.98
+	24/04/2026	
+Bauxite
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Guinean Bauxite CIF China
+SMM-AL-BA-002
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Bauxite FOB Guinea
+SMM-AL-BA-007
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Australia Bauxite (Low-Temperature) CIF China
+SMM-AL-BA-003
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Australia Bauxite (High-Temperature) CIF China
+SMM-AL-BA-004
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Malaysia Bauxite CIF China
+SMM-AL-BA-016
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Malaysia Washed Bauxite CIF China
+SMM-AL-BA-017
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+The Republic of Ghana Bauxite CIF China
+SMM-AL-BA-018
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Indonesia Bauxite
+SMM-AL-BA-008
+	USD/dmt	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Bauxite CFR Turkey
+SMM-AL-BA-019
+	USD/dmt	
+	
+	
+	
++3
+	17/04/2026	
+
+	
+Shanxi Bauxite
+SMM-AL-BA-006
+	USD/tonne	
+	
+	
+	
+-0.02
+	16/04/2026	
+
+	
+Shanxi Bauxite (A/S ratio 5, Al₂O₃ 60%)
+SMM-AL-BA-009
+	USD/tonne	
+	
+	
+	
+-0.02
+	16/04/2026	
+
+	
+Henan Bauxite (A/S ratio 6, Al₂O₃ 62%)
+SMM-AL-BA-010
+	USD/tonne	
+	
+	
+	
+-0.02
+	16/04/2026	
+
+	
+Henan Bauxite (A/S ratio 5, Al₂O₃ 60%)
+SMM-AL-BA-011
+	USD/tonne	
+	
+	
+	
+-0.02
+	16/04/2026	
+
+	
+Guangxi Bauxite (A/S ratio 7, Al₂O₃ 53%)
+SMM-AL-BA-012
+	USD/tonne	
+	
+	
+	
+-0.01
+	16/04/2026	
+
+	
+Guangxi Bauxite (A/S ratio 6, Al₂O₃ 53%)
+SMM-AL-BA-013
+	USD/tonne	
+	
+	
+	
+-0.01
+	16/04/2026	
+
+	
+Guizhou Bauxite
+SMM-AL-BA-005
+	USD/tonne	
+	
+	
+	
+-0.02
+	16/04/2026	
+
+	
+Guizhou Bauxite (A/S ratio 5.5, Al₂O₃ 58%)
+SMM-AL-BA-014
+	USD/tonne	
+	
+	
+	
+-0.01
+	16/04/2026	
+
+	
+Guiyang Bauxite (A/S ratio 6, Al₂O₃ 60%)
+SMM-AL-BA-015
+	USD/tonne	
+	
+	
+	
+-0.01
+	16/04/2026	
+Alumina
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Alumina (Al₂O₃≥98.5%) FOB Western Australia
+SMM-AL-AO-002
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Alumina (Al₂O₃≥98.5%) FOB Easten Australia
+SMM-AL-AO-003
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Alumina (Al₂O₃≥98.5%) Fob Indonesia
+SMM-AL-AO-004
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Alumina (Al₂O₃≥98.5%) FOB Brazil
+SMM-AL-AO-027
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Alumina (Al₂O₃≥98.5%) FOB Vietnam
+SMM-AL-AO-028
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+SMM Lianyungang Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-025
+	USD/tonne	
+	
+	
+	
+-0.23
+	24/04/2026	
+
+	
+SMM Bayuquan Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-026
+	USD/tonne	
+	
+	
+	
+-0.23
+	24/04/2026	
+
+	
+SMM Shandong Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-020
+	USD/tonne	
+	
+	
+	
+-0.22
+	24/04/2026	
+
+	
+SMM Henan Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-021
+	USD/tonne	
+	
+	
+	
+-0.23
+	24/04/2026	
+
+	
+SMM Shanxi Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-022
+	USD/tonne	
+	
+	
+	
+-0.23
+	24/04/2026	
+
+	
+SMM Guangxi Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-023
+	USD/tonne	
+	
+	
+	
+-0.23
+	24/04/2026	
+
+	
+SMM Guizhou Alumina (Al₂O₃≥98.5%)
+SMM-AL-AO-024
+	USD/tonne	
+	
+	
+	
+-0.23
+	24/04/2026	
+SMM Aluminum Index
+	Name	Unit	Index	Change
+	Date
+
+	
+SMM Bauxite Index
+SMM-AL-BA-001
+	USD/dmt	
+	
+0
+	24/04/2026
+
+	
+SMM Alumina Index (Al₂O₃≥98.5%)
+SMM-AL-AO-001
+	USD/tonne	
+	
+-0.34
+	24/04/2026
+
+	
+SMM Shandong Alumina Index (Al₂O₃≥98.5%)
+SMM-AL-AO-015
+	USD/tonne	
+	
+-0.4
+	24/04/2026
+
+	
+SMM Henan Alumina Index (Al₂O₃≥98.5%)
+SMM-AL-AO-016
+	USD/tonne	
+	
+-0.42
+	24/04/2026
+
+	
+SMM Shanxi Alumina Index (Al₂O₃≥98.5%)
+SMM-AL-AO-017
+	USD/tonne	
+	
+-0.3
+	24/04/2026
+
+	
+SMM Guizhou Alumina Index (Al₂O₃≥98.5%)
+SMM-AL-AO-018
+	USD/tonne	
+	
+-0.36
+	24/04/2026
+
+	
+SMM Guangxi Alumina Index (Al₂O₃≥98.5%)
+SMM-AL-AO-019
+	USD/tonne	
+	
+-0.33
+	24/04/2026
+SMM Low - Carbon Aluminum
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Aluminum Low-Carbon P1020A
+SMM-AL-AL-013
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Aluminum Low-Carbon P1020A Premium Index
+SMM-AL-AL-014
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low-Carbon Aluminum Alloy Ingot A356
+SMM-AL-AY-024
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Recycled Low-Carbon Aluminum Alloy Ingot A356
+SMM-AL-AY-025
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low-Carbon Aluminum Alloy Ingot ZLD102
+SMM-AL-AY-026
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low-Carbon Aluminum Alloy Ingot ZLD104
+SMM-AL-AY-027
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yuannan Low Carbon 1A60 Aluminum Rod Premium
+SMM-AL-RO-017
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yuannan Low Carbon 6101/6201 Aluminum Rod Premium
+SMM-AL-RO-018
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yuannan Low Carbon 8030 Aluminum Rod Premium
+SMM-AL-RO-019
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yunan Low Carbon φ90 Aluminum Billet Premium
+SMM-AL-BL-031
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yunan Low Carbon φ120 Aluminum Billet Premium
+SMM-AL-BL-032
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yunan Low Carbon φ178 Aluminum Billet Premium
+SMM-AL-BL-033
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+8-series Low Carbon Double Zero Foil
+SMM-AL-AP-030
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+1-series Low Carbon Double Zero Foil
+SMM-AL-AP-031
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+8-series Low Carbon Double Zero Foil Premium
+SMM-AL-AP-053
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+1-series Low Carbon Double Zero Foil Premium
+SMM-AL-AP-054
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+Aluminum Alloy Ingot
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+SMM Aluminum Alloy Ingot ADC12
+SMM-AL-AY-001
+	USD/tonne	
+	
+	
+	
+-14.97
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot ADC12 CIF Japan
+SMM-AL-AY-014
+	USD/tonne	
+	
+	
+	
++10
+	24/04/2026	
+
+	
+Thailand aluminium Alloy Ingot ADC12
+SMM-AL-AY-021
+	THB/kg	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Thailand Aluminum Alloy Ingot ADC12 FOB
+SMM-AL-AY-030
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Malaysia Aluminum Alloy Ingot ADC12
+SMM-AL-AY-031
+	MYR/kg	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Malaysia Aluminum Alloy Ingot ADC12 FOB
+SMM-AL-AY-032
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Ningbo Aluminum Alloy Ingot ADC12
+SMM-AL-AY-006
+	USD/tonne	
+	
+	
+	
+-14.88
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot ADC12 CIF Ningbo
+SMM-AL-AY-004
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+East China Aluminum Alloy Ingot ADC12
+SMM-AL-AY-007
+	USD/tonne	
+	
+	
+	
+-14.97
+	24/04/2026	
+
+	
+South China Aluminum Alloy Ingot ADC12
+SMM-AL-AY-008
+	USD/tonne	
+	
+	
+	
+-14.97
+	24/04/2026	
+
+	
+Southwest China Aluminum Alloy Ingot ADC12
+SMM-AL-AY-009
+	USD/tonne	
+	
+	
+	
+-14.97
+	24/04/2026	
+
+	
+Northeast China Aluminum Alloy Ingot ADC12
+SMM-AL-AY-010
+	USD/tonne	
+	
+	
+	
+-14.97
+	24/04/2026	
+
+	
+Yunnan Aluminum Alloy Ingot ADC12
+SMM-AL-AY-011
+	USD/tonne	
+	
+	
+	
+-14.91
+	24/04/2026	
+
+	
+Guizhou Aluminum Alloy Ingot ADC12
+SMM-AL-AY-012
+	USD/tonne	
+	
+	
+	
+-14.91
+	24/04/2026	
+
+	
+Hunan Aluminum Alloy Ingot ADC12
+SMM-AL-AY-013
+	USD/tonne	
+	
+	
+	
+-14.93
+	24/04/2026	
+
+	
+SMM Southern China die-cast Aluminum Ingot
+SMM-AL-AY-023
+	USD/tonne	
+	
+	
+	
+-1.92
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot AlSi9Cu3
+SMM-AL-AY-002
+	USD/tonne	
+	
+	
+	
+-15.03
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot A380
+SMM-AL-AY-003
+	USD/tonne	
+	
+	
+	
+-15.13
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot AC4B
+SMM-AL-AY-015
+	USD/tonne	
+	
+	
+	
+-15.02
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot A360
+SMM-AL-AY-005
+	USD/tonne	
+	
+	
+	
+-8.61
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot ZLD102
+SMM-AL-AY-016
+	USD/tonne	
+	
+	
+	
+-8.57
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot ZLD104
+SMM-AL-AY-017
+	USD/tonne	
+	
+	
+	
+-8.58
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot AlSi10MnMg
+SMM-AL-AY-018
+	USD/tonne	
+	
+	
+	
+-8.65
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot AlSi10Mg(Fe)
+SMM-AL-AY-019
+	USD/tonne	
+	
+	
+	
+-8.62
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot AlSi12(Fe)
+SMM-AL-AY-020
+	USD/tonne	
+	
+	
+	
+-8.6
+	24/04/2026	
+
+	
+Low-Carbon Aluminum Alloy Ingot A356
+SMM-AL-AY-024
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Aluminum Alloy Ingot A356
+SMM-AL-AY-022
+	USD/tonne	
+	
+	
+	
+-2.09
+	24/04/2026	
+
+	
+Recycled Low-Carbon Aluminum Alloy Ingot A356
+SMM-AL-AY-025
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low-Carbon Aluminum Alloy Ingot ZLD102
+SMM-AL-AY-026
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low-Carbon Aluminum Alloy Ingot ZLD104
+SMM-AL-AY-027
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+Aluminum Based Master Alloy
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Al-Ti-B Wires A, Aluminum Based Master Alloy
+SMM-AL-BY-001
+	USD/tonne	
+	
+	
+	
+-9.54
+	24/04/2026	
+
+	
+Al-Ti-B Wires B, Aluminum Based Master Alloy
+SMM-AL-BY-002
+	USD/tonne	
+	
+	
+	
+-9.24
+	24/04/2026	
+
+	
+Al-Ti-B Wires C, Aluminum Based Master Alloy
+SMM-AL-BY-003
+	USD/tonne	
+	
+	
+	
+-9.07
+	24/04/2026	
+
+	
+Aluminum Strontium Alloy AlSr10
+SMM-AL-BY-004
+	USD/tonne	
+	
+	
+	
+-9.37
+	24/04/2026	
+
+	
+Aluminum Based Master Alloy AlSi12
+SMM-AL-BY-005
+	USD/tonne	
+	
+	
+	
+-5.36
+	24/04/2026	
+
+	
+Aluminum Based Master Alloy AlSi20
+SMM-AL-BY-006
+	USD/tonne	
+	
+	
+	
+-8.57
+	24/04/2026	
+
+	
+Aluminum Based Master Alloy AlSi50
+SMM-AL-BY-007
+	USD/tonne	
+	
+	
+	
+-5.23
+	24/04/2026	
+High - Purity Alumina
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+3N High-Purity Alumina (Al₂O₃≥99.9%, D50=0.4μm)
+SMM-AL-AO-007
+	USD/kg	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+3N High-Purity Alumina (Al₂O₃≥99.9%, D50=0.8um)
+SMM-AL-AO-008
+	USD/kg	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+3N High-Purity Alumina (Al₂O₃≥99.9%, 1um＜D50≤5um)
+SMM-AL-AO-005
+	USD/kg	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+3N High-Purity Alumina (Al₂O₃≥99.9%, D50=1um)
+SMM-AL-AO-009
+	USD/kg	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+4N High-Purity Alumina (Al₂O₃≥99.99%, D50=0.1um and D97=0.3um)
+SMM-AL-AO-010
+	USD/kg	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+4N High-Purity Alumina (Al₂O₃≥99.99%, 0.5um＜D50≤1um)
+SMM-AL-AO-011
+	USD/kg	
+	
+	
+	
+-0.04
+	24/04/2026	
+
+	
+4N High-Purity Alumina (Al₂O₃≥99.99%, 1um＜D50≤3um)
+SMM-AL-AO-012
+	USD/kg	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+4N High-Purity Alumina (Al₂O₃≥99.99%, 3um＜D50≤5um)
+SMM-AL-AO-013
+	USD/kg	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+4N5 High-Purity Alumina (Al₂O₃≥99.995%, 30um＜D50≤40um)
+SMM-AL-AO-006
+	USD/kg	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+5N High-Purity Alumina (Al₂O₃≥99.999%, 0.2um≤D50≤3um)
+SMM-AL-AO-014
+	USD/kg	
+	
+	
+	
+-0.05
+	24/04/2026	
+
+	
+Xinjiang 99.99% High Purity Aluminum
+SMM-AL-AP-001
+	USD/tonne	
+	
+	
+	
+-2.69
+	24/04/2026	
+
+	
+Xinjiang 99.996% High Purity Aluminum
+SMM-AL-AP-002
+	USD/tonne	
+	
+	
+	
+-2.77
+	24/04/2026	
+Petroleum Coke Index
+	Name	Unit	Index	Change
+	Date
+
+	
+Northeast China SMM 1# Petroleum Coke Spot price Index
+SMM-AL-PC-011
+	USD/tonne	
+	
+-0.41
+	24/04/2026
+
+	
+Shandong SMM 2# Petroleum Coke Spot price Index
+SMM-AL-PC-012
+	USD/tonne	
+	
+-0.36
+	24/04/2026
+
+	
+Shandong SMM 3# Petroleum Coke Spot price Index
+SMM-AL-PC-013
+	USD/tonne	
+	
+-1.11
+	24/04/2026
+
+	
+Shandong SMM 4# Petroleum Coke Spot price Index
+SMM-AL-PC-014
+	USD/tonne	
+	
+-0.56
+	24/04/2026
+
+	
+Northwest China SMM 3# Petroleum Coke Spot Price Index
+SMM-AL-PC-015
+	USD/tonne	
+	
+-0.35
+	24/04/2026
+Imported Petroleum Coke
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Indonesian Low-Sulphur Petroleum Coke
+SMM-BM-AM-041
+	USD/tonne	
+	
+	
+	
+-0.9
+	24/04/2026	
+
+	
+Brazil-Origin Low-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-001
+	USD/tonne	
+	
+	
+	
+-0.79
+	24/04/2026	
+
+	
+Argentina-Origin Low-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-002
+	USD/tonne	
+	
+	
+	
+-0.84
+	24/04/2026	
+
+	
+Saudi Arabia-Origin High-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-003
+	USD/tonne	
+	
+	
+	
+-3.52
+	24/04/2026	
+
+	
+Russia-Origin Medium-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-004
+	USD/tonne	
+	
+	
+	
+-33.03
+	24/04/2026	
+
+	
+Russia-Origin High-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-005
+	USD/tonne	
+	
+	
+	
+-3.61
+	24/04/2026	
+
+	
+US-Origin Medium-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-006
+	USD/tonne	
+	
+	
+	
+-0.59
+	24/04/2026	
+
+	
+US-Origin High-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-007
+	USD/tonne	
+	
+	
+	
+-0.33
+	24/04/2026	
+
+	
+Taiwan China-Origin High-Sulfur Petroleum Coke Ex-whs China Main Ports
+SMM-AL-IPC-008
+	USD/tonne	
+	
+	
+	
+-0.25
+	24/04/2026	
+
+	
+Formosa Plastics Petroleum Coke FOB Taiwan
+SMM-AL-IPC-009
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+Petroleum Coke
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Shandong 2A Petroleum Coke
+SMM-AL-PC-001
+	USD/tonne	
+	
+	
+	
+-0.37
+	24/04/2026	
+
+	
+Shandong 2B Petroleum Coke
+SMM-AL-PC-002
+	USD/tonne	
+	
+	
+	
+-0.34
+	24/04/2026	
+
+	
+Shandong 2C Petroleum Coke
+SMM-AL-PC-003
+	USD/tonne	
+	
+	
+	
+-0.32
+	24/04/2026	
+
+	
+Shandong 3A Petroleum Coke
+SMM-AL-PC-004
+	USD/tonne	
+	
+	
+	
+-8.72
+	24/04/2026	
+
+	
+Shandong 3B Petroleum Coke
+SMM-AL-PC-005
+	USD/tonne	
+	
+	
+	
+-6.77
+	24/04/2026	
+
+	
+Shandong 3C Petroleum Coke
+SMM-AL-PC-006
+	USD/tonne	
+	
+	
+	
+-6.75
+	24/04/2026	
+
+	
+Shandong High-Sulfur Petroleum Coke
+SMM-AL-PC-007
+	USD/tonne	
+	
+	
+	
++0.47
+	24/04/2026	
+
+	
+Shandong 4A Petroleum Coke
+SMM-AL-PC-008
+	USD/tonne	
+	
+	
+	
+-0.18
+	24/04/2026	
+
+	
+Shandong 4B Petroleum Coke
+SMM-AL-PC-009
+	USD/tonne	
+	
+	
+	
+-3.39
+	24/04/2026	
+
+	
+China Low-Sulphur Petroleum Coke
+SMM-BM-AM-020
+	USD/tonne	
+	
+	
+	
+-0.41
+	24/04/2026	
+
+	
+Shaanxi Low-Sulfur Petroleum Coke
+SMM-AL-PC-010
+	USD/tonne	
+	
+	
+	
+-0.35
+	24/04/2026	
+Calcined Petroleum Coke
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Northeast China Low-Sulfur Calcined Petroleum Coke
+SMM-AL-CPC-003
+	USD/tonne	
+	
+	
+	
+-0.56
+	24/04/2026	
+
+	
+East China Medium-Sulfur Ordinary Calcined Petroleum Coke
+SMM-AL-CPC-002
+	USD/tonne	
+	
+	
+	
+-0.26
+	24/04/2026	
+
+	
+East China Medium-Sulfur Low Vanadium Calcined Petroleum Coke
+SMM-AL-CPC-004
+	USD/tonne	
+	
+	
+	
+-0.37
+	24/04/2026	
+
+	
+East China Medium-High Sulfur Ordinary Calcined Petroleum Coke
+SMM-AL-CPC-005
+	USD/tonne	
+	
+	
+	
+-0.24
+	24/04/2026	
+
+	
+East China Medium-High Sulfur Low Vanadium Calcined Petroleum Coke
+SMM-AL-CPC-001
+	USD/tonne	
+	
+	
+	
+-0.35
+	24/04/2026	
+
+	
+East China High Sulfur Ordinary Calcined Petroleum Coke
+SMM-AL-CPC-006
+	USD/tonne	
+	
+	
+	
+-0.25
+	24/04/2026	
+Prebaked Anode
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+East China Prebaked Anode
+SMM-AL-PA-001
+	USD/tonne	
+	
+	
+	
+-0.61
+	24/04/2026	
+
+	
+Central China Prebaked Anode
+SMM-AL-PA-002
+	USD/tonne	
+	
+	
+	
+-0.49
+	24/04/2026	
+
+	
+Southwest China Prebaked Anode
+SMM-AL-PA-003
+	USD/tonne	
+	
+	
+	
+-0.52
+	24/04/2026	
+
+	
+Northwest China Prebaked Anode
+SMM-AL-PA-004
+	USD/tonne	
+	
+	
+	
+-0.52
+	24/04/2026	
+
+	
+Prebaked Anode for High-Purity Aluminum FOB China
+SMM-AL-PA-005
+	USD/tonne	
+	
+	
+	
++45
+	01/04/2026	
+
+	
+Prebaked Anode for High-end Aluminum FOB China
+SMM-AL-PA-006
+	USD/tonne	
+	
+	
+	
++42.5
+	01/04/2026	
+Coal Tar Pitch
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Coal tar pitch (Shandong)
+SMM-AL-ALM-010
+	USD/tonne	
+	
+	
+	
+-0.43
+	24/04/2026	
+
+	
+Coal tar pitch (Shanxi)
+SMM-AL-ALM-011
+	USD/tonne	
+	
+	
+	
+-0.44
+	24/04/2026	
+
+	
+Coal tar pitch (Hebei)
+SMM-AL-ALM-009
+	USD/tonne	
+	
+	
+	
+-0.43
+	24/04/2026	
+
+	
+Coal tar pitch (Shanxi)
+SMM-AL-ALM-012
+	USD/tonne	
+	
+	
+	
+-0.44
+	24/04/2026	
+
+	
+Coal tar pitch (Hebei)
+SMM-AL-ALM-008
+	USD/tonne	
+	
+	
+	
+-0.43
+	24/04/2026	
+Aluminum Accessory
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+North China Acid Grade Fluorite Powder
+SMM-AL-FS-003
+	USD/tonne	
+	
+	
+	
+-0.28
+	24/04/2026	
+
+	
+Central China Acid Grade Fluorite Powder
+SMM-AL-FS-004
+	USD/tonne	
+	
+	
+	
+-0.3
+	24/04/2026	
+
+	
+East China Acid Grade Fluorite Powder
+SMM-AL-FS-005
+	USD/tonne	
+	
+	
+	
+-0.29
+	24/04/2026	
+
+	
+Aluminum fluoride
+SMM-AL-FS-001
+	USD/tonne	
+	
+	
+	
+-0.97
+	24/04/2026	
+
+	
+Cryolite
+SMM-AL-FS-002
+	USD/tonne	
+	
+	
+	
+-0.66
+	24/04/2026	
+Caustic Soda
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+SMM CIF Indonesia Sodium Hydroxide
+SMM-NI-AUX-002
+	USD/tonne	
+	
+	
+	
+-70
+	22/04/2026	
+
+	
+Shandong 32% Ion-Membrane Process Caustic Soda Solution POT
+SMM-AL-SH-001
+	USD/tonne	
+	
+	
+	
+-14.32
+	24/04/2026	
+
+	
+Shandong 50% Ion-Membrane Process Caustic Soda Solution POT
+SMM-AL-SH-002
+	USD/tonne	
+	
+	
+	
+-13.11
+	24/04/2026	
+
+	
+Henan 32% Membrane Grade Liquid Caustic Soda (100% NaOH Basis)
+SMM-AL-SH-005
+	USD/tonne	
+	
+	
+	
+-0.21
+	24/04/2026	
+
+	
+Shanxi 32% Membrane Grade Liquid Caustic Soda (100% NaOH Basis)
+SMM-AL-SH-004
+	USD/tonne	
+	
+	
+	
+-0.21
+	24/04/2026	
+
+	
+Shanxi 50% Membrane Grade Liquid Caustic Soda (100% NaOH Basis)
+SMM-AL-SH-010
+	USD/tonne	
+	
+	
+	
+-0.19
+	24/04/2026	
+
+	
+Shaanxi 32% Membrane Grade Liquid Caustic Soda (100% NaOH Basis)
+SMM-AL-SH-006
+	USD/tonne	
+	
+	
+	
+-0.22
+	24/04/2026	
+
+	
+Guangxi 32% Membrane Grade Liquid Caustic Soda (100% NaOH Basis)
+SMM-AL-SH-007
+	USD/tonne	
+	
+	
+	
+-0.24
+	24/04/2026	
+
+	
+Shandong Caustic Soda Flake (NaOH≥96% )
+SMM-AL-SH-003
+	USD/tonne	
+	
+	
+	
+-0.28
+	24/04/2026	
+
+	
+Neimenggu Caustic Soda Flake （NAOH≥96% ）
+SMM-AL-SH-008
+	USD/tonne	
+	
+	
+	
+-0.25
+	24/04/2026	
+
+	
+Northwest Caustic Soda Flake (NAOH≥96% )
+SMM-AL-SH-009
+	USD/tonne	
+	
+	
+	
+-0.26
+	24/04/2026	
+Aluminum Hydroxide
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+China Aluminum Hydroxide
+SMM-AL-AO-029
+	USD/tonne	
+	
+	
+	
+-0.14
+	24/04/2026	
+
+	
+Shandong Aluminum Hydroxide
+SMM-AL-AO-030
+	USD/tonne	
+	
+	
+	
+-0.14
+	24/04/2026	
+
+	
+Shanxi Aluminum Hydroxide
+SMM-AL-AO-031
+	USD/tonne	
+	
+	
+	
+-0.14
+	24/04/2026	
+
+	
+Henan Aluminum Hydroxide
+SMM-AL-AO-032
+	USD/tonne	
+	
+	
+	
+-0.14
+	24/04/2026	
+
+	
+Guangxi Aluminum Hydroxide
+SMM-AL-AO-033
+	USD/tonne	
+	
+	
+	
+-0.14
+	24/04/2026	
+
+	
+Guizhou Aluminum Hydroxide
+SMM-AL-AO-034
+	USD/tonne	
+	
+	
+	
+-0.15
+	24/04/2026	
+Remelting Billet
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Fe 0.2-0.25% Foshan Remelting Al Billet
+SMM-AL-RB-001
+	USD/tonne	
+	
+	
+	
+-0.79
+	24/04/2026	
+
+	
+Fe 0.25-0.35% Foshan Remelting Al Billet
+SMM-AL-RB-002
+	USD/tonne	
+	
+	
+	
+-0.78
+	24/04/2026	
+
+	
+Fe 0.35-0.5% Foshan Remelting Al Billet
+SMM-AL-RB-003
+	USD/tonne	
+	
+	
+	
+-0.77
+	24/04/2026	
+
+	
+Fe 0.2-0.25% Wuxi Remelting Al Billet
+SMM-AL-RB-004
+	USD/tonne	
+	
+	
+	
+-0.78
+	24/04/2026	
+
+	
+Fe 0.25-0.35% Wuxi Remelting Al Billet
+SMM-AL-RB-005
+	USD/tonne	
+	
+	
+	
+-0.77
+	24/04/2026	
+
+	
+Fe 0.35-0.5% Wuxi Remelting Al Billet
+SMM-AL-RB-006
+	USD/tonne	
+	
+	
+	
+-0.77
+	24/04/2026	
+
+	
+Fe 0.2-0.25% Nanchang Remelting Al Billet
+SMM-AL-RB-007
+	USD/tonne	
+	
+	
+	
+-0.77
+	24/04/2026	
+
+	
+Fe 0.25-0.35% Nanchang Remelting Al Billet
+SMM-AL-RB-008
+	USD/tonne	
+	
+	
+	
+-0.76
+	24/04/2026	
+
+	
+Fe 0.35-0.5% Nanchang Remelting Al Billet
+SMM-AL-RB-009
+	USD/tonne	
+	
+	
+	
+-0.75
+	24/04/2026	
+
+	
+Fe 0.2-0.25% Linyi Remelting Al Billet
+SMM-AL-RB-010
+	USD/tonne	
+	
+	
+	
++1.81
+	24/04/2026	
+
+	
+Fe 0.25-0.35% Linyi Remelting Al Billet
+SMM-AL-RB-011
+	USD/tonne	
+	
+	
+	
++1.82
+	24/04/2026	
+
+	
+Fe 0.35-0.5% Linyi Remelting Al Billet
+SMM-AL-RB-012
+	USD/tonne	
+	
+	
+	
++1.83
+	24/04/2026	
+
+	
+Fe 0.2-0.25% Xuchang Remelting Al Billet
+SMM-AL-RB-013
+	USD/tonne	
+	
+	
+	
++1.79
+	24/04/2026	
+
+	
+Fe 0.25-0.35% Xuchang Remelting Al Billet
+SMM-AL-RB-014
+	USD/tonne	
+	
+	
+	
++1.8
+	24/04/2026	
+
+	
+Fe 0.35-0.5% Xuchang Remelting Al Billet
+SMM-AL-RB-015
+	USD/tonne	
+	
+	
+	
++1.81
+	24/04/2026	
+
+	
+Fe 0.2-0.25% Hubei Remelting Al Billet
+SMM-AL-RB-016
+	USD/tonne	
+	
+	
+	
+-0.77
+	24/04/2026	
+
+	
+Fe 0.25-0.35% Hubei Remelting Al Billet
+SMM-AL-RB-017
+	USD/tonne	
+	
+	
+	
+-0.76
+	24/04/2026	
+
+	
+Fe 0.35-0.5% Hubei Remelting Al Billet
+SMM-AL-RB-018
+	USD/tonne	
+	
+	
+	
+-0.75
+	24/04/2026	
+Aluminum Extrusions
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Foshan Aluminum Extrusions Billet
+SMM-AL-EX-003
+	USD/tonne	
+	
+	
+	
+-7.45
+	24/04/2026	
+
+	
+Shandong Aluminum Extrusions Billet
+SMM-AL-EX-004
+	USD/tonne	
+	
+	
+	
+-6.19
+	24/04/2026	
+
+	
+Photovoltaic Frame
+SMM-AL-EX-001
+	USD/tonne	
+	
+	
+	
+-6.18
+	24/04/2026	
+
+	
+Nanchang Aluminum Extrusions Billet
+SMM-AL-EX-005
+	USD/tonne	
+	
+	
+	
+-6.1
+	24/04/2026	
+
+	
+Foshan Surface Sprayed Aluminum Extrusions
+SMM-AL-EX-006
+	USD/tonne	
+	
+	
+	
+-7.47
+	24/04/2026	
+
+	
+Shandong Surface Sprayed Aluminum Extrusions
+SMM-AL-EX-007
+	USD/tonne	
+	
+	
+	
+-6.27
+	24/04/2026	
+
+	
+Nanchang Surface Sprayed Aluminum Extrusions
+SMM-AL-EX-008
+	USD/tonne	
+	
+	
+	
+-10.01
+	24/04/2026	
+
+	
+Foshan Surface Electrophoresis Aluminum Extrusions
+SMM-AL-EX-009
+	USD/tonne	
+	
+	
+	
+-7.67
+	24/04/2026	
+
+	
+Shandong Surface Electrophoresis Aluminum Extrusions
+SMM-AL-EX-010
+	USD/tonne	
+	
+	
+	
+-6.38
+	24/04/2026	
+
+	
+Nanchang Surface Electrophoresis Aluminum Extrusions
+SMM-AL-EX-011
+	USD/tonne	
+	
+	
+	
+-6.21
+	24/04/2026	
+
+	
+Photovoltaic Frame Premium
+SMM-AL-EX-002
+	USD/tonne	
+	
+	
+	
+-0.2
+	24/04/2026	
+
+	
+Foshan Thermal Break Aluminum Extrusions
+SMM-AL-EX-012
+	USD/tonne	
+	
+	
+	
+-7.66
+	24/04/2026	
+
+	
+Shandong Thermal Break Aluminum Extrusions
+SMM-AL-EX-013
+	USD/tonne	
+	
+	
+	
+-6.36
+	24/04/2026	
+
+	
+Nanchang Thermal Break Aluminum Extrusions
+SMM-AL-EX-014
+	USD/tonne	
+	
+	
+	
+-6.23
+	24/04/2026	
+
+	
+Foshan Anodized Aluminum Extrusions
+SMM-AL-EX-015
+	USD/tonne	
+	
+	
+	
+-7.6
+	24/04/2026	
+
+	
+Shandong Anodized Aluminum Extrusions
+SMM-AL-EX-016
+	USD/tonne	
+	
+	
+	
+-6.32
+	24/04/2026	
+
+	
+Jiangxi Anodized Aluminum Extrusions
+SMM-AL-EX-017
+	USD/tonne	
+	
+	
+	
+-6.19
+	24/04/2026	
+
+	
+Aluminum Extrusions formwork
+SMM-AL-EX-018
+	USD/tonne	
+	
+	
+	
+-6.21
+	24/04/2026	
+
+	
+Aluminum Extrusions formwork (Lease)
+SMM-AL-EX-019
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+Aluminum Plate / Sheet and Strip
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Shandong 3104 Can Body Stock
+SMM-AL-CB-001
+	USD/tonne	
+	
+	
+	
+-2.45
+	24/04/2026	
+
+	
+Recycled Can Body Stock
+SMM-AL-CB-002
+	USD/tonne	
+	
+	
+	
+-2.45
+	24/04/2026	
+
+	
+Shandong 8011 food Foil Stock
+SMM-AL-AP-050
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Henan 8011 food Foil Stock
+SMM-AL-AP-051
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Neimenggu 8011 food Foil Stock
+SMM-AL-AP-052
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+5182 Automotive Inner Panel
+SMM-AL-AS-014
+	USD/tonne	
+	
+	
+	
+-2.89
+	24/04/2026	
+
+	
+5754 Automotive Inner Panel
+SMM-AL-AS-015
+	USD/tonne	
+	
+	
+	
+-2.89
+	24/04/2026	
+
+	
+Yantai 6016 Automotive Outer Panel
+SMM-AL-AP-014
+	USD/tonne	
+	
+	
+	
+-3.12
+	24/04/2026	
+
+	
+Yantai 6014 Automotive Outer Panel
+SMM-AL-AP-015
+	USD/tonne	
+	
+	
+	
+-3.12
+	24/04/2026	
+
+	
+5182 Aluminum Alloy Sheets and Strips Used for Motor
+SMM-AL-AP-016
+	USD/tonne	
+	
+	
+	
+-2.61
+	24/04/2026	
+
+	
+5754 Aluminum Alloy Sheets and Strips Used for Motor
+SMM-AL-AP-017
+	USD/tonne	
+	
+	
+	
+-2.44
+	24/04/2026	
+
+	
+6061 Aluminum Alloy Sheets and Strips Used for Motor
+SMM-AL-AP-018
+	USD/tonne	
+	
+	
+	
+-2.53
+	24/04/2026	
+
+	
+3003 Aluminum Plate/Sheet and Strip for Battery Case
+SMM-AL-AP-019
+	USD/tonne	
+	
+	
+	
+-2.37
+	24/04/2026	
+
+	
+Shanghai 1-series Brazing Aluminum Semis
+SMM-AL-AP-007
+	USD/tonne	
+	
+	
+	
+-2.44
+	24/04/2026	
+
+	
+Shanghai 3-series Brazing Aluminum Semis
+SMM-AL-AP-008
+	USD/tonne	
+	
+	
+	
+-2.53
+	24/04/2026	
+
+	
+Shanghai 7-series Brazing Aluminum Semis
+SMM-AL-AP-009
+	USD/tonne	
+	
+	
+	
+-2.49
+	24/04/2026	
+
+	
+Shandong 1060 Curtain Wall Flat
+SMM-AL-AP-010
+	USD/tonne	
+	
+	
+	
+-2.21
+	24/04/2026	
+
+	
+Henan 1060 Curtain Wall Flat
+SMM-AL-AP-011
+	USD/tonne	
+	
+	
+	
+-2.21
+	24/04/2026	
+
+	
+1-series Secondary Aluminum Plate/Sheet and Strip
+SMM-AL-AP-020
+	USD/tonne	
+	
+	
+	
+-2.21
+	24/04/2026	
+
+	
+3-series Secondary Aluminum Plate/Sheet and Strip
+SMM-AL-AP-021
+	USD/tonne	
+	
+	
+	
+-2.22
+	24/04/2026	
+
+	
+5-series Secondary Aluminum Plate/Sheet and Strip
+SMM-AL-AP-022
+	USD/tonne	
+	
+	
+	
+-2.31
+	24/04/2026	
+
+	
+6-series Secondary Aluminum Plate/Sheet and Strip
+SMM-AL-AP-023
+	USD/tonne	
+	
+	
+	
+-2.35
+	24/04/2026	
+
+	
+Shandong 8079 Household Foil Stock
+SMM-AL-AP-012
+	USD/tonne	
+	
+	
+	
+-2.34
+	24/04/2026	
+
+	
+Henan 8079 Household Foil Stock
+SMM-AL-AP-013
+	USD/tonne	
+	
+	
+	
+-2.32
+	24/04/2026	
+Aluminum Foil
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Air Conditioning Foil - Light Foil
+SMM-AL-AP-024
+	USD/tonne	
+	
+	
+	
+-2.34
+	24/04/2026	
+
+	
+Air Conditioning Foil - Hydrophilic Foil
+SMM-AL-AP-025
+	USD/tonne	
+	
+	
+	
+-2.44
+	24/04/2026	
+
+	
+8011 Household Foil
+SMM-AL-AP-026
+	USD/tonne	
+	
+	
+	
+-2.4
+	24/04/2026	
+
+	
+8011 Food Container Foil
+SMM-AL-AP-027
+	USD/tonne	
+	
+	
+	
+-2.42
+	24/04/2026	
+
+	
+3003 Food Container Foil
+SMM-AL-AP-028
+	USD/tonne	
+	
+	
+	
+-2.42
+	24/04/2026	
+
+	
+8079 Medicinal Foil
+SMM-AL-AP-029
+	USD/tonne	
+	
+	
+	
+-2.67
+	24/04/2026	
+
+	
+Lithium Battery Aluminum Foil (12μ)
+SMM-AL-AS-011
+	USD/tonne	
+	
+	
+	
+-3.42
+	24/04/2026	
+
+	
+Lithium Battery Aluminum Foil (13μ)
+SMM-AL-AS-012
+	USD/tonne	
+	
+	
+	
+-3.33
+	24/04/2026	
+
+	
+Lithium Battery Aluminum Foil (15μ)
+SMM-AL-AS-013
+	USD/tonne	
+	
+	
+	
+-3.25
+	24/04/2026	
+
+	
+Carbon-Coated Lithium Battery Aluminum Foil (12μ)
+SMM-AL-LF-001
+	USD/tonne	
+	
+	
+	
+-8.01
+	24/04/2026	
+
+	
+Carbon-Coated Lithium Battery Aluminum Foil (13μ)
+SMM-AL-LF-002
+	USD/tonne	
+	
+	
+	
+-7.93
+	24/04/2026	
+
+	
+1-series Low Carbon Double Zero Foil
+SMM-AL-AP-031
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+8-series Low Carbon Double Zero Foil
+SMM-AL-AP-030
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+Aluminum Cast - rolled Coil
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Shandong 1060 Embossed Sheet
+SMM-AL-AP-032
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Neimenggu 1060 Embossed Sheet
+SMM-AL-AP-034
+	USD/tonne	
+	
+	
+	
+-0.05
+	24/04/2026	
+
+	
+Henan 1060 Embossed Sheet
+SMM-AL-AP-033
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 1050/1060 Presensitized Plate Substrate
+SMM-AL-AP-035
+	USD/tonne	
+	
+	
+	
+-0.07
+	24/04/2026	
+
+	
+Henan 1050/1060 Presensitized Plate Substrate
+SMM-AL-AP-036
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Neimenggu 1050/1060 Presensitized Plate Substrate
+SMM-AL-AP-037
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 1100 Decorative Plate
+SMM-AL-AP-038
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Henan 1100 Decorative Plate
+SMM-AL-AP-039
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Neimenggu 1100 Decorative Plate
+SMM-AL-AP-040
+	USD/tonne	
+	
+	
+	
+-0.05
+	24/04/2026	
+
+	
+Shandong 3003 Oil Tank Plate
+SMM-AL-AP-041
+	USD/tonne	
+	
+	
+	
+-0.07
+	24/04/2026	
+
+	
+Henan 3003 Oil Tank Plate
+SMM-AL-AP-042
+	USD/tonne	
+	
+	
+	
+-0.07
+	24/04/2026	
+
+	
+Neimenggu 3003 Oil Tank Plate
+SMM-AL-AP-043
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 3102 Air Conditioner Foil Stock
+SMM-AL-AP-044
+	USD/tonne	
+	
+	
+	
+-0.07
+	24/04/2026	
+
+	
+Henan 3102 Air Conditioner Foil Stock
+SMM-AL-AP-045
+	USD/tonne	
+	
+	
+	
+-0.07
+	24/04/2026	
+
+	
+Neimenggu 3102 Air Conditioner Foil Stock
+SMM-AL-AP-046
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 8011 Air Conditioner Foil Stock
+SMM-AL-AP-047
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Henan 8011 Air Conditioner Foil Stock
+SMM-AL-AP-048
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Neimenggu 8011 Air Conditioner Foil Stock
+SMM-AL-AP-049
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 8011 food Foil Stock
+SMM-AL-AP-050
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Henan 8011 food Foil Stock
+SMM-AL-AP-051
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Neimenggu 8011 food Foil Stock
+SMM-AL-AP-052
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+Aluminum Slab
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Yunnan 1-series Aluminum Slab
+SMM-AL-AP-003
+	USD/tonne	
+	
+	
+	
+-2.15
+	24/04/2026	
+
+	
+Yunnan 3-series Aluminum Slab
+SMM-AL-AP-004
+	USD/tonne	
+	
+	
+	
+-2.17
+	24/04/2026	
+
+	
+Yunnan 5-series Aluminum Slab
+SMM-AL-AP-005
+	USD/tonne	
+	
+	
+	
+-2.18
+	24/04/2026	
+
+	
+Yunnan 6-series Aluminum Slab
+SMM-AL-AP-006
+	USD/tonne	
+	
+	
+	
+-2.19
+	24/04/2026	
+Aluminum Billet
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Foshan 6061 Aluminum Billet Premium
+SMM-AL-BL-013
+	USD/tonne	
+	
+	
+	
+-0.05
+	24/04/2026	
+
+	
+Foshan 6082 Aluminum Billet Premium
+SMM-AL-BL-014
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Xinjiang φ90 Aluminum Billet Premium
+SMM-AL-BL-016
+	USD/tonne	
+	
+	
+	
++2.62
+	24/04/2026	
+
+	
+Xinjiang φ120 Aluminum Billet Premium
+SMM-AL-BL-017
+	USD/tonne	
+	
+	
+	
++2.63
+	24/04/2026	
+
+	
+Xinjiang φ178 Aluminum Billet Premium
+SMM-AL-BL-018
+	USD/tonne	
+	
+	
+	
++2.63
+	24/04/2026	
+
+	
+Baotou φ90 Aluminum Billet Premium
+SMM-AL-BL-019
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Baotou φ120 Aluminum Billet Premium
+SMM-AL-BL-020
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Baotou φ178 Aluminum Billet Premium
+SMM-AL-BL-021
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Henan φ90 Aluminum Billet Premium
+SMM-AL-BL-022
+	USD/tonne	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+Henan φ120 Aluminum Billet Premium
+SMM-AL-BL-023
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Henan φ178 Aluminum Billet Premium
+SMM-AL-BL-024
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Linyi φ90 Aluminum Billet Premium
+SMM-AL-BL-025
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Linyi φ120 Aluminum Billet Premium
+SMM-AL-BL-026
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Linyi φ178 Aluminum Billet Premium
+SMM-AL-BL-027
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Nanchang φ90 Aluminum Billet Premium
+SMM-AL-BL-010
+	USD/tonne	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+Nanchang φ120 Aluminum Billet Premium
+SMM-AL-BL-009
+	USD/tonne	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+Nanchang φ178 Aluminum Billet Premium
+SMM-AL-BL-011
+	USD/tonne	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+Foshan φ90 Aluminum Billet Premium
+SMM-AL-BL-001
+	USD/tonne	
+	
+	
+	
++2.56
+	24/04/2026	
+
+	
+Foshan φ100 Aluminum Billet Premium
+SMM-AL-BL-002
+	USD/tonne	
+	
+	
+	
++2.56
+	24/04/2026	
+
+	
+Foshan φ120 Aluminum Billet Premium
+SMM-AL-BL-003
+	USD/tonne	
+	
+	
+	
++2.57
+	24/04/2026	
+
+	
+Foshan φ150 Aluminum Billet Premium
+SMM-AL-BL-004
+	USD/tonne	
+	
+	
+	
++2.57
+	24/04/2026	
+
+	
+Foshan φ178 Aluminum Billet Premium
+SMM-AL-BL-005
+	USD/tonne	
+	
+	
+	
++2.57
+	24/04/2026	
+
+	
+Wuxi φ90 Aluminum Billet Premium
+SMM-AL-BL-007
+	USD/tonne	
+	
+	
+	
++5.15
+	24/04/2026	
+
+	
+Wuxi φ120 Aluminum Billet Premium
+SMM-AL-BL-006
+	USD/tonne	
+	
+	
+	
++5.16
+	24/04/2026	
+
+	
+Wuxi φ178 Aluminum Billet Premium
+SMM-AL-BL-008
+	USD/tonne	
+	
+	
+	
++5.16
+	24/04/2026	
+
+	
+Yunan Low Carbon φ90 Aluminum Billet Premium
+SMM-AL-BL-031
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yunan Low Carbon φ120 Aluminum Billet Premium
+SMM-AL-BL-032
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yunan Low Carbon φ178 Aluminum Billet Premium
+SMM-AL-BL-033
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low Carbon φ90 Aluminum Billet
+SMM-AL-ALM-003
+	USD/tonne	
+	
+	
+	
+-10.6
+	24/04/2026	
+
+	
+Low Carbon φ120 Aluminum Billet
+SMM-AL-ALM-002
+	USD/tonne	
+	
+	
+	
+-10.59
+	24/04/2026	
+
+	
+Low Carbon φ178 Aluminum Billet
+SMM-AL-ALM-007
+	USD/tonne	
+	
+	
+	
+-10.59
+	24/04/2026	
+
+	
+Wuxi 6061 Aluminum Billet Premium
+SMM-AL-BL-034
+	USD/tonne	
+	
+	
+	
++0.18
+	20/04/2026	
+
+	
+Wuxi 6082 Aluminum Billet Premium
+SMM-AL-BL-035
+	USD/tonne	
+	
+	
+	
++0.18
+	20/04/2026	
+Aluminum Rod
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Shandong 61.5% IACS High-conductivity Aluminum Rod Premium
+SMM-AL-RO-020
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 62.5% IACS High-conductivity Aluminum Rod Premium
+SMM-AL-RO-021
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Shandong 1A60 Aluminum Rod Premium
+SMM-AL-RO-001
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Henan 1A60 Aluminum Rod Premium
+SMM-AL-RO-004
+	USD/tonne	
+	
+	
+	
+-0.03
+	24/04/2026	
+
+	
+Inner Mongolia 1A60 Aluminum Rod Premium
+SMM-AL-RO-005
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Guangdong 1A60 Aluminum Rod Premium
+SMM-AL-RO-006
+	USD/tonne	
+	
+	
+	
+-0.03
+	24/04/2026	
+
+	
+Hebei 1A60 Aluminum Rod Premium
+SMM-AL-RO-002
+	USD/tonne	
+	
+	
+	
+-0.03
+	24/04/2026	
+
+	
+Jiangsu 1A60 Aluminum Rod Premium
+SMM-AL-RO-003
+	USD/tonne	
+	
+	
+	
+-0.03
+	24/04/2026	
+
+	
+Shandong 6101/6201 Aluminum Rod Premium
+SMM-AL-RO-007
+	USD/tonne	
+	
+	
+	
+-0.08
+	24/04/2026	
+
+	
+Henan 6101/6201 Aluminum Rod Premium
+SMM-AL-RO-008
+	USD/tonne	
+	
+	
+	
+-0.09
+	24/04/2026	
+
+	
+Guangdong 6101/6201 Aluminum Rod Premium
+SMM-AL-RO-009
+	USD/tonne	
+	
+	
+	
+-0.14
+	24/04/2026	
+
+	
+1070 Aluminum Rod Premium (Inner Mongolia)
+SMM-AL-RO-022
+	USD/tonne	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+1070 Aluminum Rod Premium (Yunan)
+SMM-AL-RO-023
+	USD/tonne	
+	
+	
+	
+-0.01
+	24/04/2026	
+
+	
+Shandong 8030 Aluminum Rod Premium
+SMM-AL-RO-010
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Henan 8030 Aluminum Rod Premium
+SMM-AL-RO-011
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Guangdong 8030 Aluminum Rod Premium
+SMM-AL-RO-012
+	USD/tonne	
+	
+	
+	
+-0.06
+	24/04/2026	
+
+	
+Yuannan Low Carbon 1A60 Aluminum Rod Premium
+SMM-AL-RO-017
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yuannan Low Carbon 6101/6201 Aluminum Rod Premium
+SMM-AL-RO-018
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Yuannan Low Carbon 8030 Aluminum Rod Premium
+SMM-AL-RO-019
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+Low Carbon 1A60 Aluminum Rod (Guangdong)
+SMM-AL-ALM-004
+	USD/tonne	
+	
+	
+	
+-10.58
+	24/04/2026	
+
+	
+Low Carbon 6101/6201 Aluminum Rod (Guangdong)
+SMM-AL-ALM-005
+	USD/tonne	
+	
+	
+	
+-10.68
+	24/04/2026	
+
+	
+Low Carbon 8030 Aluminum Rod (Guangdong)
+SMM-AL-ALM-006
+	USD/tonne	
+	
+	
+	
+-10.61
+	24/04/2026	
+
+	
+Inner Mongolia 99.70% Deoxidized Aluminum Rod Premium
+SMM-AL-RO-016
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Shandong 99.70% Deoxidized Aluminum Rod Premium
+SMM-AL-RO-013
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+
+	
+Henan 99.70% Deoxidized Aluminum Rod Premium
+SMM-AL-RO-014
+	USD/tonne	
+	
+	
+	
+-0.03
+	24/04/2026	
+
+	
+Guangdong 99.70% Deoxidized Aluminum Rod Premium
+SMM-AL-RO-015
+	USD/tonne	
+	
+	
+	
+-0.03
+	24/04/2026	
+
+	
+99.70% Deoxidized Aluminum Granules (Guangdong)
+SMM-AL-ALM-001
+	USD/tonne	
+	
+	
+	
+-0.02
+	24/04/2026	
+Imported Scrap
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Ningbo Port Imported Twitch Scrap
+SMM-AL-AS-002
+	USD/tonne	
+	
+	
+	
+-14.77
+	24/04/2026	
+
+	
+Tianjin Port Imported Twitch Scrap
+SMM-AL-AS-003
+	USD/tonne	
+	
+	
+	
+-14.78
+	24/04/2026	
+Aluminum Scrap quotations outside China
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Scrap Mixed Aluminium Castings (Tense) FOB Malaysia
+SMM-AL-AS-001
+	USD/tonne	
+	
+	
+	
+-10
+	13/10/2025	
+
+	
+Malaysia Scrap Mixed Aluminium Castings (Tense)
+SMM-AL-AS-009
+	USD/tonne	
+	
+	
+	
+0
+	20/04/2026	
+UBC Ingot
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+96%Al Secondary Aluminum Ingots CIF Ningbo Port China
+SMM-AL-UI-001
+	USD/tonne	
+	
+	
+	
+-1.93
+	24/04/2026	
+
+	
+96%Al Secondary Aluminum Ingots CIF Qinzhou Port China
+SMM-AL-UI-002
+	USD/tonne	
+	
+	
+	
+-1.93
+	24/04/2026	
+
+	
+96%Al Secondary Aluminum Ingots CIF Qingdao Port China
+SMM-AL-UI-003
+	USD/tonne	
+	
+	
+	
+-1.94
+	24/04/2026	
+
+	
+96%Al Secondary Aluminum Ingots CIF Nansha Port China
+SMM-AL-UI-004
+	USD/tonne	
+	
+	
+	
+-1.94
+	24/04/2026	
+
+	
+98%Al Secondary Aluminum Ingots CIF Ningbo Port China
+SMM-AL-UI-005
+	USD/tonne	
+	
+	
+	
+-2.21
+	24/04/2026	
+
+	
+98%Al Secondary Aluminum Ingots CIF Qinzhou Port China
+SMM-AL-UI-006
+	USD/tonne	
+	
+	
+	
+-2.21
+	24/04/2026	
+
+	
+98%Al Secondary Aluminum Ingots CIF Qingdao Port China
+SMM-AL-UI-007
+	USD/tonne	
+	
+	
+	
+-2.22
+	24/04/2026	
+
+	
+98%Al Secondary Aluminum Ingots CIF Nansha Port China
+SMM-AL-UI-008
+	USD/tonne	
+	
+	
+	
+-2.22
+	24/04/2026	
+Aluminum Powder
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+Shanghai Atomized Aluminum Powder
+SMM-AL-PO-001
+	USD/kg	
+	
+	
+	
+0
+	24/04/2026	
+Needle Coke
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+China Oil-Based Calcined Needle Coke
+SMM-BM-AM-040
+	USD/tonne	
+	
+	
+	
+-0.72
+	24/04/2026	
+
+	
+China Oil-based Green Needle Coke
+SMM-BM-AM-018
+	USD/tonne	
+	
+	
+	
+-0.59
+	24/04/2026	
+
+	
+China Coal-based Calcined Needle Coke
+SMM-BM-AM-019
+	USD/tonne	
+	
+	
+	
+-0.68
+	24/04/2026	
+
+	
+China Coal-Based Green Needle Coke
+SMM-BM-AM-039
+	USD/tonne	
+	
+	
+	
+-0.53
+	24/04/2026	
+Aluminum Foil Processing Fee
+	Name	Unit	High	Low	Average	Change
+	Date	
+
+	
+12μ Li Battery Al Foil Premium
+SMM-AL-AS-140
+	USD/tonne	
+	
+	
+	
+-2.87
+	24/04/2026	
+
+	
+13μ Li Battery Al Foil Premium
+SMM-AL-AS-004
+	USD/tonne	
+	
+	
+	
+-2.68
+	24/04/2026	
+
+	
+15μ Li Battery Al Foil Premium
+SMM-AL-AS-010
+	USD/tonne	
+	
+	
+	
+-2.5
+	24/04/2026	
+
+	
+8-series Low Carbon Double Zero Foil Premium
+SMM-AL-AP-053
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+1-series Low Carbon Double Zero Foil Premium
+SMM-AL-AP-054
+	USD/tonne	
+	
+	
+	
+0
+	24/04/2026	
+
+	
+12μ C-Coated Li Battery Al Foil Premium
+SMM-AL-AP-055
+	USD/tonne	
+	
+	
+	
+-12.69
+	01/04/2026	
+
+	
+13μ C-Coated Li Battery Al Foil Premium
+SMM-AL-AP-056
+	USD/tonne	
+	
+	
+	
+-12.16
+	01/04/2026	
+SHFE
+	Name	Unit	Open	High	Low	Latest	Change
+	Vol.
+
+	
+al2605
+	CNY/mt	
+	
+	
+	
+	
+-95
+	
+
+
+	
+al2606
+M
+	CNY/mt	
+	
+	
+	
+	
+-95
+	
+
+
+	
+al2607
+	CNY/mt	
+	
+	
+	
+	
+-85
+	
+
+
+	
+al2608
+	CNY/mt	
+	
+	
+	
+	
+-95
+	
+
+
+	
+al2609
+	CNY/mt	
+	
+	
+	
+	
+-85
+	
+
+
+	
+al2610
+	CNY/mt	
+	
+	
+	
+	
+-80
+	
+
+
+	
+al2611
+	CNY/mt	
+	
+	
+	
+	
+-80
+	
+
+
+	
+al2612
+	CNY/mt	
+	
+	
+	
+	
+-90
+	
+
+
+	
+al2701
+	CNY/mt	
+	
+	
+	
+	
+-60
+	
+
+
+	
+al2702
+	CNY/mt	
+	
+	
+	
+	
+-35
+	
+
+
+	
+al2703
+	CNY/mt	
+	
+	
+	
+	
+-30
+	
+
+
+	
+al2704
+	CNY/mt	
+	
+	
+	
+	
+-25
+	
+LME
+	Name	Unit	Open	High	Low	Latest	Change
+	Vol.
+
+	
+LMEselect Aluminum 3 Month
+	USD/mt	
+	
+	
+	
+	
+-7
+	
+SHFE/LME
+	Name	Open	High	Low	Latest	Change
+
+
+	
+SMM Aluminum Spot/LME 3M
+	
+	
+	
+	
+	
+-0.0328
+
+
+	
+SHFE.AL2605/LME 3M
+	
+	
+	
+	
+	
+-0.0329
+
+
+	
+SHFE.AL2606/LME 3M
+	
+	
+	
+	
+	
+-0.0274
+
+
+	
+SHFE.AL2607/LME 3M
+	
+	
+	
+	
+	
+-0.0288
+
+
+	
+SHFE.AL2608/LME 3M
+	
+	
+	
+	
+	
+-0.0331
+
+
+	
+SHFE.AL2609/LME 3M
+	
+	
+	
+	
+	
+-0.0261
+
+
+	
+SHFE.AL2610/LME 3M
+	
+	
+	
+	
+	
+-0.0247
+
+
+	
+SHFE.AL2611/LME 3M
+	
+	
+	
+	
+	
+-0.0274
+
+
+	
+SHFE.AL2612/LME 3M
+	
+	
+	
+	
+	
+-0.0372
+Import Arbitrage
+	Name	Unit	Open	High	Low	Latest	Change
+
+
+	
+Aluminum import arbitrage(Spot)
+	CNY/mt	
+	
+	
+	
+	
+-108.2156
+
+
+	
+Aluminum import arbitrage(AL2605)
+	CNY/mt	
+	
+	
+	
+	
+-108.2597
+
+
+	
+Aluminum import arbitrage(AL2606)
+	CNY/mt	
+	
+	
+	
+	
+-87.3251
+
+
+	
+Aluminum import arbitrage(AL2607)
+	CNY/mt	
+	
+	
+	
+	
+-87.479
+
+
+	
+Aluminum import arbitrage(AL2608)
+	CNY/mt	
+	
+	
+	
+	
+-103.2822
+
+
+	
+Aluminum import arbitrage(AL2609)
+	CNY/mt	
+	
+	
+	
+	
+-82.5541
+
+
+	
+Aluminum import arbitrage(AL2610)
+	CNY/mt	
+	
+	
+	
+	
+-80.4756
+
+
+	
+Aluminum import arbitrage(AL2611)
+	CNY/mt	
+	
+	
+	
+	
+-90.6044
+
+
+	
+Aluminum import arbitrage(AL2612)
+	CNY/mt	
+	
+	
+	
+	
+-119.9669
+Shanghai Metals Market
+
+Notice: By accessing this site you agree that you will not copy or reproduce any part of its contents (including, but not limited to, single prices, graphs or news content) in any form or for any purpose whatsoever without the prior written consent of the publisher.
+
+Compliance Statement
+|
+Privacy Policy
+|
+Terms & Conditions
+|
+Sales, Refund & Shipping
+|
+Contact Us
+|
+Sitemap
+Drop us a line service.en@smm.cn
++86 021 5155-0306
+Live chat via WhatsApp
+Copyright © 2026 SMM Information & Technology Co., Ltd. All rights reserved.
