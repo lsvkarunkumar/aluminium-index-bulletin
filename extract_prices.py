@@ -1,8 +1,8 @@
-import requests
-from bs4 import BeautifulSoup
-import re
 from datetime import datetime
+import re
+
 import pandas as pd
+from playwright.sync_api import sync_playwright
 
 
 URL = "https://www.metal.com/Aluminum?currency_type=2"
@@ -15,56 +15,69 @@ TARGETS = {
 }
 
 
-def fetch_page():
-    headers = {
-        "User-Agent": "Mozilla/5.0"
-    }
-    r = requests.get(URL, headers=headers, timeout=30)
-    return r.text
+def clean(text):
+    return re.sub(r"\s+", " ", str(text)).strip()
 
 
-def extract_value(text_block):
-    match = re.search(r"\d{2,5}\.\d+|\d{2,5}", text_block)
-    if match:
+def extract_number_after_keyword(full_text, keyword):
+    idx = full_text.lower().find(keyword.lower())
+
+    if idx == -1:
+        return None
+
+    snippet = full_text[idx: idx + 180]
+
+    numbers = re.findall(r"\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?", snippet)
+
+    if not numbers:
+        return None
+
+    for n in numbers:
         try:
-            return float(match.group())
-        except:
-            return None
+            value = float(n.replace(",", ""))
+            if value > 1:
+                return value
+        except Exception:
+            continue
+
     return None
 
 
-def extract_prices(html):
-    soup = BeautifulSoup(html, "html.parser")
-    full_text = soup.get_text(" ", strip=True)
+def fetch_visible_text():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
 
-    data = {}
+        page = browser.new_page(
+            viewport={"width": 1600, "height": 1200},
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 Chrome/120 Safari/537.36"
+            ),
+        )
 
-    for col_name, keyword in TARGETS.items():
-        value = None
+        page.set_default_timeout(15000)
 
-        try:
-            idx = full_text.lower().find(keyword.lower())
+        page.goto(URL, wait_until="domcontentloaded", timeout=45000)
+        page.wait_for_timeout(8000)
 
-            if idx != -1:
-                snippet = full_text[idx: idx + 120]
-                value = extract_value(snippet)
+        for _ in range(8):
+            page.mouse.wheel(0, 1200)
+            page.wait_for_timeout(1000)
 
-        except:
-            pass
+        text = clean(page.locator("body").inner_text(timeout=15000))
 
-        data[col_name] = value
+        browser.close()
 
-    return data
+    return text
 
 
 def main():
-    html = fetch_page()
-    prices = extract_prices(html)
+    full_text = fetch_visible_text()
 
-    today = datetime.today().strftime("%Y-%m-%d")
+    row = {"Date": datetime.today().strftime("%Y-%m-%d")}
 
-    row = {"Date": today}
-    row.update(prices)
+    for column_name, keyword in TARGETS.items():
+        row[column_name] = extract_number_after_keyword(full_text, keyword)
 
     df = pd.DataFrame([row])
 
