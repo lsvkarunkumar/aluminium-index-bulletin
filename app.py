@@ -6,10 +6,11 @@ import plotly.express as px
 import streamlit as st
 
 
-APP_TITLE = "Aluminium Market Index Bulletin – Daily Pink Sheet"
-
+APP_TITLE = "Aluminium Index Bulletin"
+APP_SUBTITLE = "Daily Pink Sheet"
 DATA_DIR = Path("data")
 PINK_SHEET_FILE = DATA_DIR / "pink_sheet.csv"
+MASTER_FILE = DATA_DIR / "master_index_list.csv"
 EXCEL_FILE = DATA_DIR / "pink_sheet.xlsx"
 
 FIXED_INDICES = [
@@ -19,7 +20,6 @@ FIXED_INDICES = [
     "Coal Tar Pitch (USD/t)",
 ]
 
-
 st.set_page_config(page_title=APP_TITLE, layout="wide")
 
 
@@ -27,9 +27,9 @@ st.markdown(
     """
     <style>
     .block-container {
-        padding-top: 1.0rem;
-        padding-left: 1.4rem;
-        padding-right: 1.4rem;
+        padding-top: 0.8rem;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
         max-width: 100%;
     }
 
@@ -37,47 +37,56 @@ st.markdown(
         font-family: "Arial Narrow", Arial, sans-serif;
     }
 
-    h1 {
-        font-size: 30px !important;
-        font-weight: 500 !important;
-        margin-bottom: 0.2rem !important;
-    }
-
-    .top-caption {
-        font-size: 12px;
-        color: #666;
+    .app-header {
+        border: 1px solid #d9d9d9;
+        background: linear-gradient(90deg, #fff2f7, #ffffff);
+        padding: 12px 16px;
+        border-radius: 6px;
         margin-bottom: 10px;
     }
 
-    .section-title {
-        font-size: 18px;
+    .app-title {
+        font-size: 28px;
         font-weight: 500;
-        margin-top: 14px;
-        margin-bottom: 7px;
+        color: #111;
+        line-height: 1.1;
+    }
+
+    .app-subtitle {
+        font-size: 13px;
+        color: #555;
+        margin-top: 4px;
+    }
+
+    .section-title {
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 12px;
+        margin-bottom: 6px;
         border-bottom: 1px solid #d9d9d9;
         padding-bottom: 4px;
     }
 
     .metric-card {
         border: 1px solid #d9d9d9;
-        background: #fff7fb;
+        background: #fffafc;
         padding: 10px 12px;
-        height: 92px;
-        border-radius: 4px;
+        min-height: 86px;
+        border-radius: 5px;
     }
 
     .metric-title {
         font-size: 12px;
         color: #444;
-        line-height: 1.1;
-        height: 30px;
+        line-height: 1.15;
+        height: 28px;
         overflow: hidden;
     }
 
     .metric-value {
         font-size: 22px;
         color: #111;
-        margin-top: 6px;
+        margin-top: 5px;
         line-height: 1.1;
     }
 
@@ -89,27 +98,27 @@ st.markdown(
 
     div[data-testid="stDataFrame"] {
         border: 1px solid #d9d9d9;
-    }
-
-    .download-card {
-        border: 1px solid #d9d9d9;
-        background: #fafafa;
-        padding: 10px 12px;
         border-radius: 4px;
-        margin-bottom: 8px;
     }
 
-    .stAlert {
-        padding: 0.35rem 0.75rem;
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 6px;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        border: 1px solid #d9d9d9;
+        border-radius: 4px 4px 0 0;
+        padding: 8px 12px;
+        background: #fafafa;
+    }
+
+    .stTabs [aria-selected="true"] {
+        background: #fff2f7 !important;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
-
-def format_date_for_display(series):
-    return pd.to_datetime(series, errors="coerce").dt.strftime("%d/%b/%Y")
 
 
 def load_data():
@@ -128,14 +137,26 @@ def load_data():
     return df
 
 
+def load_master():
+    if not MASTER_FILE.exists():
+        return pd.DataFrame()
+
+    master = pd.read_csv(MASTER_FILE)
+    return master
+
+
+def display_date(series):
+    return pd.to_datetime(series, errors="coerce").dt.strftime("%d/%b/%Y")
+
+
 def clean_display_df(df):
     out = df.copy()
-    out["Date"] = format_date_for_display(out["Date"])
+    out["Date"] = display_date(out["Date"])
 
     for col in out.columns:
         if col != "Date":
-            out[col] = out[col].replace({None: "", "None": "", "nan": ""})
             out[col] = out[col].fillna("")
+            out[col] = out[col].replace({"None": "", "nan": ""})
 
     return out
 
@@ -153,18 +174,18 @@ def latest_value_and_delta(df, col):
 
     latest = temp.iloc[0][col]
 
-    if len(temp) >= 2:
-        previous = temp.iloc[1][col]
-        change = latest - previous
-        pct = (change / previous * 100) if previous != 0 else None
-        sign = "+" if change > 0 else ""
+    if len(temp) < 2:
+        return f"{latest:,.2f}", "First value"
 
-        if pct is None:
-            delta = f"{sign}{change:,.2f}"
-        else:
-            delta = f"{sign}{change:,.2f} ({sign}{pct:,.2f}%)"
+    previous = temp.iloc[1][col]
+    change = latest - previous
+    pct = (change / previous * 100) if previous != 0 else None
+    sign = "+" if change > 0 else ""
+
+    if pct is None:
+        delta = f"{sign}{change:,.2f}"
     else:
-        delta = "First value"
+        delta = f"{sign}{change:,.2f} ({sign}{pct:,.2f}%)"
 
     return f"{latest:,.2f}", delta
 
@@ -180,17 +201,11 @@ def make_chart(df, col, title):
     if chart_df.empty:
         return None
 
-    fig = px.line(
-        chart_df,
-        x="Date",
-        y=col,
-        markers=True,
-        title=title.replace(" (USD/t)", ""),
-    )
+    fig = px.line(chart_df, x="Date", y=col, markers=True, title=title.replace(" (USD/t)", ""))
 
     fig.update_layout(
-        height=260,
-        margin=dict(l=10, r=10, t=35, b=10),
+        height=280,
+        margin=dict(l=10, r=10, t=36, b=10),
         font=dict(family="Arial Narrow", size=11),
         title=dict(font=dict(size=14)),
         xaxis_title="",
@@ -220,249 +235,274 @@ def excel_download_bytes():
 
 
 df = load_data()
+master = load_master()
 
-st.markdown(f"<h1>{APP_TITLE}</h1>", unsafe_allow_html=True)
 st.markdown(
-    '<div class="top-caption">Phase 2 Dashboard | Fixed benchmark panel | Last 15 days Pink Sheet | Dropdown analytics</div>',
+    f"""
+    <div class="app-header">
+        <div class="app-title">{APP_TITLE}</div>
+        <div class="app-subtitle">{APP_SUBTITLE} | Daily aluminium market index capture | Latest row on top</div>
+    </div>
+    """,
     unsafe_allow_html=True,
 )
 
 if df.empty:
-    st.warning("No Pink Sheet data found yet.")
+    st.warning("No Pink Sheet data found.")
     st.stop()
 
 display_df = clean_display_df(df)
+available_indices = [c for c in df.columns if c != "Date"]
 latest_date = display_df["Date"].iloc[0] if not display_df.empty else "-"
 
+# Top controls
+top1, top2, top3, top4 = st.columns([1, 1, 1, 2])
 
-# -----------------------------
-# TOP DOWNLOAD SECTION
-# -----------------------------
-st.markdown('<div class="section-title">Download Bulletin</div>', unsafe_allow_html=True)
-
-d1, d2, d3 = st.columns([1, 1, 2])
-
-with d1:
+with top1:
     st.download_button(
-        label="Download Excel",
+        "Download Excel",
         data=excel_download_bytes(),
-        file_name="Aluminium_Market_Index_Bulletin.xlsx",
+        file_name="Aluminium_Index_Bulletin.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         use_container_width=True,
     )
 
-with d2:
+with top2:
     st.download_button(
-        label="Download CSV",
+        "Download CSV",
         data=display_df.to_csv(index=False).encode("utf-8"),
         file_name="pink_sheet.csv",
         mime="text/csv",
         use_container_width=True,
     )
 
-with d3:
-    st.info("Downloads are placed at top for quick access. CSV is raw data; Excel is formatted Pink Sheet.")
+with top3:
+    st.metric("Latest Date", latest_date)
 
+with top4:
+    st.caption("CSV stores raw data only. Excel stores formatted Pink Sheet view.")
 
-# -----------------------------
-# STATUS STRIP
-# -----------------------------
-st.markdown('<div class="section-title">Daily Bulletin Status</div>', unsafe_allow_html=True)
+tab_overview, tab_sheet, tab_analytics, tab_master = st.tabs(
+    ["Overview", "Pink Sheet", "Analytics", "Master Index"]
+)
 
-c1, c2, c3, c4 = st.columns([1.2, 1, 1, 1])
+with tab_overview:
+    st.markdown('<div class="section-title">Status</div>', unsafe_allow_html=True)
 
-with c1:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">Latest Date</div>
-            <div class="metric-value">{latest_date}</div>
-            <div class="metric-delta">Date format: dd/mmm/yyyy</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    c1, c2, c3, c4 = st.columns(4)
 
-with c2:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">Captured Days</div>
-            <div class="metric-value">{len(df)}</div>
-            <div class="metric-delta">Latest row on top</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-with c3:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">Total Indices</div>
-            <div class="metric-value">{len(df.columns) - 1}</div>
-            <div class="metric-delta">Master-driven columns</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-with c4:
-    latest_row = display_df.iloc[0]
-    missing_values_today = latest_row.drop(labels=["Date"], errors="ignore").replace("", pd.NA).isna().sum()
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">Missing Values Latest Row</div>
-            <div class="metric-value">{missing_values_today}</div>
-            <div class="metric-delta">Blank values retained</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-# -----------------------------
-# FIXED BENCHMARK PANEL
-# -----------------------------
-st.markdown('<div class="section-title">Fixed Benchmark Panel</div>', unsafe_allow_html=True)
-
-fixed_cols = st.columns(4)
-
-for i, index_name in enumerate(FIXED_INDICES):
-    value, delta = latest_value_and_delta(df, index_name)
-
-    with fixed_cols[i]:
+    with c1:
         st.markdown(
             f"""
             <div class="metric-card">
-                <div class="metric-title">{index_name.replace(" (USD/t)", "")}</div>
-                <div class="metric-value">{value}</div>
-                <div class="metric-delta">{delta}</div>
+                <div class="metric-title">Captured Days</div>
+                <div class="metric-value">{len(df)}</div>
+                <div class="metric-delta">One row per day</div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
+    with c2:
+        st.markdown(
+            f"""
+            <div class="metric-card">
+                <div class="metric-title">Total Indices</div>
+                <div class="metric-value">{len(available_indices)}</div>
+                <div class="metric-delta">Master-driven</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-# -----------------------------
-# FIXED GRAPHS
-# -----------------------------
-st.markdown('<div class="section-title">Fixed Graphs</div>', unsafe_allow_html=True)
+    with c3:
+        missing_latest = display_df.iloc[0].drop(labels=["Date"], errors="ignore").replace("", pd.NA).isna().sum()
+        st.markdown(
+            f"""
+            <div class="metric-card">
+                <div class="metric-title">Missing Values Latest Row</div>
+                <div class="metric-value">{missing_latest}</div>
+                <div class="metric-delta">Blank retained</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-g1, g2 = st.columns(2)
+    with c4:
+        st.markdown(
+            f"""
+            <div class="metric-card">
+                <div class="metric-title">Display Date Format</div>
+                <div class="metric-value">{latest_date}</div>
+                <div class="metric-delta">dd/mmm/yyyy</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-with g1:
-    fig = make_chart(df, FIXED_INDICES[0], FIXED_INDICES[0])
-    if fig is not None:
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.info(f"No numeric data available for {FIXED_INDICES[0]}")
+    st.markdown('<div class="section-title">Fixed Benchmark Panel</div>', unsafe_allow_html=True)
 
-with g2:
-    fig = make_chart(df, FIXED_INDICES[1], FIXED_INDICES[1])
-    if fig is not None:
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.info(f"No numeric data available for {FIXED_INDICES[1]}")
+    fixed_cols = st.columns(4)
 
-g3, g4 = st.columns(2)
+    for i, index_name in enumerate(FIXED_INDICES):
+        value, delta = latest_value_and_delta(df, index_name)
 
-with g3:
-    fig = make_chart(df, FIXED_INDICES[2], FIXED_INDICES[2])
-    if fig is not None:
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.info(f"No numeric data available for {FIXED_INDICES[2]}")
+        with fixed_cols[i]:
+            st.markdown(
+                f"""
+                <div class="metric-card">
+                    <div class="metric-title">{index_name.replace(" (USD/t)", "")}</div>
+                    <div class="metric-value">{value}</div>
+                    <div class="metric-delta">{delta}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
-with g4:
-    fig = make_chart(df, FIXED_INDICES[3], FIXED_INDICES[3])
-    if fig is not None:
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.info(f"No numeric data available for {FIXED_INDICES[3]}")
+with tab_sheet:
+    st.markdown('<div class="section-title">Last 15 Days Pink Sheet Browser</div>', unsafe_allow_html=True)
 
+    default_cols = ["Date"] + [c for c in FIXED_INDICES if c in display_df.columns]
 
-# -----------------------------
-# LAST 15 DAYS TABLE
-# -----------------------------
-st.markdown('<div class="section-title">Last 15 Days Pink Sheet</div>', unsafe_allow_html=True)
-
-st.dataframe(
-    display_df.head(15),
-    use_container_width=True,
-    hide_index=True,
-    height=360,
-)
-
-
-# -----------------------------
-# DROPDOWN ANALYTICS
-# -----------------------------
-st.markdown('<div class="section-title">Dropdown Analytics</div>', unsafe_allow_html=True)
-
-available_indices = [c for c in df.columns if c != "Date"]
-
-left, right = st.columns([1, 1])
-
-with left:
-    selected_index = st.selectbox(
-        "Single Index Trend",
-        available_indices,
-        index=available_indices.index(FIXED_INDICES[0]) if FIXED_INDICES[0] in available_indices else 0,
+    selected_cols = st.multiselect(
+        "Choose columns to display",
+        options=display_df.columns.tolist(),
+        default=default_cols,
     )
 
-    fig = make_chart(df, selected_index, selected_index)
+    if not selected_cols:
+        selected_cols = default_cols
 
-    if fig is not None:
-        st.plotly_chart(fig, use_container_width=True)
-    else:
-        st.info("No numeric data available for selected index.")
+    compact_df = display_df[selected_cols].head(15)
 
-with right:
-    default_comp = [x for x in FIXED_INDICES if x in available_indices][:2]
+    column_config = {}
+    for col in compact_df.columns:
+        column_config[col] = st.column_config.TextColumn(
+            col,
+            width="small",
+        )
 
-    comparison_indices = st.multiselect(
-        "Multi-Index Comparison",
-        available_indices,
-        default=default_comp,
-        max_selections=5,
+    st.dataframe(
+        compact_df,
+        use_container_width=True,
+        hide_index=True,
+        height=430,
+        column_config=column_config,
     )
 
-    if comparison_indices:
-        comp_df = df[["Date"] + comparison_indices].copy()
+with tab_analytics:
+    st.markdown('<div class="section-title">Fixed Graphs</div>', unsafe_allow_html=True)
 
-        for col in comparison_indices:
-            comp_df[col] = pd.to_numeric(comp_df[col], errors="coerce")
+    g1, g2 = st.columns(2)
 
-        comp_df = comp_df.sort_values("Date")
-        long_df = comp_df.melt(
-            id_vars="Date",
-            var_name="Index",
-            value_name="Value",
-        ).dropna()
-
-        if not long_df.empty:
-            fig = px.line(
-                long_df,
-                x="Date",
-                y="Value",
-                color="Index",
-                markers=True,
-                title="Multi-Index Comparison",
-            )
-            fig.update_layout(
-                height=300,
-                margin=dict(l=10, r=10, t=35, b=10),
-                font=dict(family="Arial Narrow", size=11),
-                title=dict(font=dict(size=14)),
-                xaxis_title="",
-                yaxis_title="USD/t",
-                plot_bgcolor="white",
-                paper_bgcolor="white",
-            )
-            fig.update_xaxes(showgrid=True, gridcolor="#eeeeee")
-            fig.update_yaxes(showgrid=True, gridcolor="#eeeeee")
+    with g1:
+        fig = make_chart(df, FIXED_INDICES[0], FIXED_INDICES[0])
+        if fig is not None:
             st.plotly_chart(fig, use_container_width=True)
         else:
-            st.info("No numeric data available for selected comparison indices.")
+            st.info(f"No numeric data available for {FIXED_INDICES[0]}")
+
+    with g2:
+        fig = make_chart(df, FIXED_INDICES[1], FIXED_INDICES[1])
+        if fig is not None:
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info(f"No numeric data available for {FIXED_INDICES[1]}")
+
+    g3, g4 = st.columns(2)
+
+    with g3:
+        fig = make_chart(df, FIXED_INDICES[2], FIXED_INDICES[2])
+        if fig is not None:
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info(f"No numeric data available for {FIXED_INDICES[2]}")
+
+    with g4:
+        fig = make_chart(df, FIXED_INDICES[3], FIXED_INDICES[3])
+        if fig is not None:
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info(f"No numeric data available for {FIXED_INDICES[3]}")
+
+    st.markdown('<div class="section-title">Dropdown Analytics</div>', unsafe_allow_html=True)
+
+    left, right = st.columns(2)
+
+    with left:
+        selected_index = st.selectbox(
+            "Single Index",
+            available_indices,
+            index=available_indices.index(FIXED_INDICES[0]) if FIXED_INDICES[0] in available_indices else 0,
+        )
+
+        fig = make_chart(df, selected_index, selected_index)
+
+        if fig is not None:
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("No numeric data available for selected index.")
+
+    with right:
+        default_comp = [x for x in FIXED_INDICES if x in available_indices][:2]
+
+        comparison_indices = st.multiselect(
+            "Compare Indices",
+            available_indices,
+            default=default_comp,
+            max_selections=5,
+        )
+
+        if comparison_indices:
+            comp_df = df[["Date"] + comparison_indices].copy()
+
+            for col in comparison_indices:
+                comp_df[col] = pd.to_numeric(comp_df[col], errors="coerce")
+
+            comp_df = comp_df.sort_values("Date")
+            long_df = comp_df.melt(id_vars="Date", var_name="Index", value_name="Value").dropna()
+
+            if not long_df.empty:
+                fig = px.line(
+                    long_df,
+                    x="Date",
+                    y="Value",
+                    color="Index",
+                    markers=True,
+                    title="Comparison",
+                )
+                fig.update_layout(
+                    height=300,
+                    margin=dict(l=10, r=10, t=36, b=10),
+                    font=dict(family="Arial Narrow", size=11),
+                    title=dict(font=dict(size=14)),
+                    xaxis_title="",
+                    yaxis_title="USD/t",
+                    plot_bgcolor="white",
+                    paper_bgcolor="white",
+                )
+                fig.update_xaxes(showgrid=True, gridcolor="#eeeeee")
+                fig.update_yaxes(showgrid=True, gridcolor="#eeeeee")
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.info("No numeric data available for selected comparison indices.")
+
+with tab_master:
+    st.markdown('<div class="section-title">Master Index List</div>', unsafe_allow_html=True)
+
+    if master.empty:
+        st.info("Master index file not found.")
+    else:
+        section_options = ["All"] + sorted(master["Section"].dropna().astype(str).unique().tolist()) if "Section" in master.columns else ["All"]
+        selected_section = st.selectbox("Filter by section", section_options)
+
+        view = master.copy()
+        if selected_section != "All" and "Section" in view.columns:
+            view = view[view["Section"].astype(str) == selected_section]
+
+        st.dataframe(
+            view,
+            use_container_width=True,
+            hide_index=True,
+            height=520,
+        )
