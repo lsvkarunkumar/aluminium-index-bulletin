@@ -1,6 +1,6 @@
+from pathlib import Path
 import pandas as pd
 from datetime import datetime
-from pathlib import Path
 
 
 DATA_DIR = Path("data")
@@ -10,9 +10,9 @@ MASTER_FILE = DATA_DIR / "master_index_list.csv"
 def load_master_columns():
     master = pd.read_csv(MASTER_FILE)
 
-    active = master[master["Active"] == True]
+    master = master[master["Active"] == True]
 
-    columns = ["Date"] + active["Column Name"].tolist()
+    columns = ["Date"] + master["Column Name"].tolist()
 
     return columns
 
