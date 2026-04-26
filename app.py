@@ -7,10 +7,9 @@ import streamlit as st
 
 
 APP_TITLE = "Aluminium Index Bulletin"
-APP_SUBTITLE = "Daily Pink Sheet"
+
 DATA_DIR = Path("data")
 PINK_SHEET_FILE = DATA_DIR / "pink_sheet.csv"
-MASTER_FILE = DATA_DIR / "master_index_list.csv"
 EXCEL_FILE = DATA_DIR / "pink_sheet.xlsx"
 
 FIXED_INDICES = [
@@ -20,6 +19,7 @@ FIXED_INDICES = [
     "Coal Tar Pitch (USD/t)",
 ]
 
+
 st.set_page_config(page_title=APP_TITLE, layout="wide")
 
 
@@ -27,93 +27,75 @@ st.markdown(
     """
     <style>
     .block-container {
-        padding-top: 0.8rem;
-        padding-left: 1.2rem;
-        padding-right: 1.2rem;
+        padding: 1rem 1.4rem;
         max-width: 100%;
     }
 
     html, body, [class*="css"] {
         font-family: "Arial Narrow", Arial, sans-serif;
+        font-size: 14px;
     }
 
-    .app-header {
-        border: 1px solid #d9d9d9;
-        background: linear-gradient(90deg, #fff2f7, #ffffff);
-        padding: 12px 16px;
-        border-radius: 6px;
-        margin-bottom: 10px;
+    h1 {
+        font-size: 28px !important;
+        font-weight: 500 !important;
+        margin-bottom: 0rem !important;
+        line-height: 1.15 !important;
+        white-space: normal !important;
     }
 
-    .app-title {
-        font-size: 28px;
+    .subtitle {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .section {
+        font-size: 17px;
         font-weight: 500;
-        color: #111;
-        line-height: 1.1;
-    }
-
-    .app-subtitle {
-        font-size: 13px;
-        color: #555;
-        margin-top: 4px;
-    }
-
-    .section-title {
-        font-size: 16px;
-        font-weight: 500;
-        margin-top: 12px;
+        margin-top: 14px;
         margin-bottom: 6px;
-        border-bottom: 1px solid #d9d9d9;
         padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
     }
 
-    .metric-card {
-        border: 1px solid #d9d9d9;
-        background: #fffafc;
-        padding: 10px 12px;
-        min-height: 86px;
+    .card {
+        border: 1px solid #ddd;
+        background: #fff7fb;
         border-radius: 5px;
+        padding: 10px 12px;
+        height: 82px;
     }
 
-    .metric-title {
+    .card-title {
         font-size: 12px;
         color: #444;
-        line-height: 1.15;
-        height: 28px;
+        height: 26px;
+        line-height: 1.1;
         overflow: hidden;
     }
 
-    .metric-value {
+    .card-value {
         font-size: 22px;
+        margin-top: 4px;
         color: #111;
-        margin-top: 5px;
         line-height: 1.1;
     }
 
-    .metric-delta {
+    .card-sub {
         font-size: 11px;
         color: #666;
-        margin-top: 4px;
+        margin-top: 3px;
     }
 
     div[data-testid="stDataFrame"] {
-        border: 1px solid #d9d9d9;
+        border: 1px solid #ddd;
+    }
+
+    .stDownloadButton button {
         border-radius: 4px;
-    }
-
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 6px;
-    }
-
-    .stTabs [data-baseweb="tab"] {
-        border: 1px solid #d9d9d9;
-        border-radius: 4px 4px 0 0;
-        padding: 8px 12px;
-        background: #fafafa;
-    }
-
-    .stTabs [aria-selected="true"] {
-        background: #fff2f7 !important;
+        height: 38px;
+        font-size: 14px;
     }
     </style>
     """,
@@ -137,60 +119,46 @@ def load_data():
     return df
 
 
-def load_master():
-    if not MASTER_FILE.exists():
-        return pd.DataFrame()
-
-    master = pd.read_csv(MASTER_FILE)
-    return master
-
-
 def display_date(series):
     return pd.to_datetime(series, errors="coerce").dt.strftime("%d/%b/%Y")
 
 
-def clean_display_df(df):
+def clean_for_display(df):
     out = df.copy()
     out["Date"] = display_date(out["Date"])
 
     for col in out.columns:
         if col != "Date":
-            out[col] = out[col].fillna("")
-            out[col] = out[col].replace({"None": "", "nan": ""})
+            out[col] = out[col].fillna("").replace({"None": "", "nan": ""})
 
     return out
 
 
-def latest_value_and_delta(df, col):
+def get_value_delta(df, col):
     if col not in df.columns:
-        return "-", "Column missing"
+        return "-", ""
 
-    temp = df[["Date", col]].copy()
-    temp[col] = pd.to_numeric(temp[col], errors="coerce")
-    temp = temp.dropna(subset=[col]).sort_values("Date", ascending=False)
+    tmp = df[["Date", col]].copy()
+    tmp[col] = pd.to_numeric(tmp[col], errors="coerce")
+    tmp = tmp.dropna(subset=[col]).sort_values("Date", ascending=False)
 
-    if temp.empty:
-        return "-", "No value"
+    if tmp.empty:
+        return "-", ""
 
-    latest = temp.iloc[0][col]
+    latest = tmp.iloc[0][col]
 
-    if len(temp) < 2:
-        return f"{latest:,.2f}", "First value"
+    if len(tmp) < 2:
+        return f"{latest:,.2f}", ""
 
-    previous = temp.iloc[1][col]
+    previous = tmp.iloc[1][col]
     change = latest - previous
-    pct = (change / previous * 100) if previous != 0 else None
+    pct = (change / previous * 100) if previous else 0
     sign = "+" if change > 0 else ""
 
-    if pct is None:
-        delta = f"{sign}{change:,.2f}"
-    else:
-        delta = f"{sign}{change:,.2f} ({sign}{pct:,.2f}%)"
-
-    return f"{latest:,.2f}", delta
+    return f"{latest:,.2f}", f"{sign}{change:,.2f} ({sign}{pct:,.2f}%)"
 
 
-def make_chart(df, col, title):
+def make_chart(df, col):
     if col not in df.columns:
         return None
 
@@ -201,11 +169,17 @@ def make_chart(df, col, title):
     if chart_df.empty:
         return None
 
-    fig = px.line(chart_df, x="Date", y=col, markers=True, title=title.replace(" (USD/t)", ""))
+    fig = px.line(
+        chart_df,
+        x="Date",
+        y=col,
+        markers=True,
+        title=col.replace(" (USD/t)", ""),
+    )
 
     fig.update_layout(
         height=280,
-        margin=dict(l=10, r=10, t=36, b=10),
+        margin=dict(l=10, r=10, t=35, b=10),
         font=dict(family="Arial Narrow", size=11),
         title=dict(font=dict(size=14)),
         xaxis_title="",
@@ -220,7 +194,7 @@ def make_chart(df, col, title):
     return fig
 
 
-def excel_download_bytes():
+def excel_bytes():
     if EXCEL_FILE.exists():
         return EXCEL_FILE.read_bytes()
 
@@ -228,46 +202,40 @@ def excel_download_bytes():
     output = io.BytesIO()
 
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
-        clean_display_df(df).to_excel(writer, index=False, sheet_name="Pink Sheet")
+        clean_for_display(df).to_excel(writer, index=False, sheet_name="Pink Sheet")
 
     output.seek(0)
     return output.read()
 
 
 df = load_data()
-master = load_master()
 
-st.markdown(
-    f"""
-    <div class="app-header">
-        <div class="app-title">{APP_TITLE}</div>
-        <div class="app-subtitle">{APP_SUBTITLE} | Daily aluminium market index capture | Latest row on top</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.markdown("<h1>Aluminium Index Bulletin</h1>", unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Daily Pink Sheet</div>', unsafe_allow_html=True)
 
 if df.empty:
-    st.warning("No Pink Sheet data found.")
+    st.warning("No data file found.")
     st.stop()
 
-display_df = clean_display_df(df)
-available_indices = [c for c in df.columns if c != "Date"]
-latest_date = display_df["Date"].iloc[0] if not display_df.empty else "-"
+display_df = clean_for_display(df)
+latest_date = display_df["Date"].iloc[0]
 
-# Top controls
-top1, top2, top3, top4 = st.columns([1, 1, 1, 2])
 
-with top1:
+# -----------------------------
+# DOWNLOADS
+# -----------------------------
+d1, d2, d3 = st.columns([1, 1, 3])
+
+with d1:
     st.download_button(
         "Download Excel",
-        data=excel_download_bytes(),
+        data=excel_bytes(),
         file_name="Aluminium_Index_Bulletin.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         use_container_width=True,
     )
 
-with top2:
+with d2:
     st.download_button(
         "Download CSV",
         data=display_df.to_csv(index=False).encode("utf-8"),
@@ -276,233 +244,170 @@ with top2:
         use_container_width=True,
     )
 
-with top3:
-    st.metric("Latest Date", latest_date)
 
-with top4:
-    st.caption("CSV stores raw data only. Excel stores formatted Pink Sheet view.")
+# -----------------------------
+# OVERVIEW
+# -----------------------------
+st.markdown('<div class="section">Overview</div>', unsafe_allow_html=True)
 
-tab_overview, tab_sheet, tab_analytics, tab_master = st.tabs(
-    ["Overview", "Pink Sheet", "Analytics", "Master Index"]
+o1, o2, o3, o4 = st.columns(4)
+
+with o1:
+    st.markdown(
+        f"""
+        <div class="card">
+            <div class="card-title">Latest Date</div>
+            <div class="card-value">{latest_date}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with o2:
+    st.markdown(
+        f"""
+        <div class="card">
+            <div class="card-title">Captured Days</div>
+            <div class="card-value">{len(df)}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with o3:
+    st.markdown(
+        f"""
+        <div class="card">
+            <div class="card-title">Tracked Indices</div>
+            <div class="card-value">{len(df.columns) - 1}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with o4:
+    missing = display_df.iloc[0].drop(labels=["Date"], errors="ignore").replace("", pd.NA).isna().sum()
+    st.markdown(
+        f"""
+        <div class="card">
+            <div class="card-title">Missing Values</div>
+            <div class="card-value">{missing}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+# -----------------------------
+# KEY BENCHMARKS
+# -----------------------------
+st.markdown('<div class="section">Key Benchmarks</div>', unsafe_allow_html=True)
+
+cards = st.columns(4)
+
+for i, col in enumerate(FIXED_INDICES):
+    value, delta = get_value_delta(df, col)
+
+    with cards[i]:
+        st.markdown(
+            f"""
+            <div class="card">
+                <div class="card-title">{col.replace(" (USD/t)", "")}</div>
+                <div class="card-value">{value}</div>
+                <div class="card-sub">{delta}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
+# -----------------------------
+# TREND VIEW
+# -----------------------------
+st.markdown('<div class="section">Trend View</div>', unsafe_allow_html=True)
+
+available_indices = [c for c in df.columns if c != "Date"]
+
+t1, t2 = st.columns(2)
+
+with t1:
+    selected_index = st.selectbox(
+        "Select index",
+        available_indices,
+        index=available_indices.index(FIXED_INDICES[0]) if FIXED_INDICES[0] in available_indices else 0,
+    )
+
+with t2:
+    compare_indices = st.multiselect(
+        "Compare indices",
+        available_indices,
+        default=[c for c in FIXED_INDICES if c in df.columns][:2],
+        max_selections=5,
+    )
+
+g1, g2 = st.columns(2)
+
+with g1:
+    fig = make_chart(df, selected_index)
+    if fig is not None:
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info("No numeric data available.")
+
+with g2:
+    if compare_indices:
+        comp = df[["Date"] + compare_indices].copy()
+
+        for c in compare_indices:
+            comp[c] = pd.to_numeric(comp[c], errors="coerce")
+
+        comp = comp.sort_values("Date")
+        long = comp.melt(id_vars="Date", var_name="Index", value_name="Value").dropna()
+
+        if not long.empty:
+            fig = px.line(
+                long,
+                x="Date",
+                y="Value",
+                color="Index",
+                markers=True,
+                title="Comparison",
+            )
+            fig.update_layout(
+                height=280,
+                margin=dict(l=10, r=10, t=35, b=10),
+                font=dict(family="Arial Narrow", size=11),
+                xaxis_title="",
+                yaxis_title="USD/t",
+                plot_bgcolor="white",
+                paper_bgcolor="white",
+            )
+            fig.update_xaxes(showgrid=True, gridcolor="#eeeeee")
+            fig.update_yaxes(showgrid=True, gridcolor="#eeeeee")
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.info("No numeric data available.")
+
+
+# -----------------------------
+# RECENT DATA
+# -----------------------------
+st.markdown('<div class="section">Recent Data</div>', unsafe_allow_html=True)
+
+visible_cols = ["Date"] + [c for c in FIXED_INDICES if c in display_df.columns]
+compact_df = display_df[visible_cols].head(15)
+
+st.dataframe(
+    compact_df,
+    use_container_width=True,
+    hide_index=True,
+    height=300,
 )
 
-with tab_overview:
-    st.markdown('<div class="section-title">Status</div>', unsafe_allow_html=True)
-
-    c1, c2, c3, c4 = st.columns(4)
-
-    with c1:
-        st.markdown(
-            f"""
-            <div class="metric-card">
-                <div class="metric-title">Captured Days</div>
-                <div class="metric-value">{len(df)}</div>
-                <div class="metric-delta">One row per day</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    with c2:
-        st.markdown(
-            f"""
-            <div class="metric-card">
-                <div class="metric-title">Total Indices</div>
-                <div class="metric-value">{len(available_indices)}</div>
-                <div class="metric-delta">Master-driven</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    with c3:
-        missing_latest = display_df.iloc[0].drop(labels=["Date"], errors="ignore").replace("", pd.NA).isna().sum()
-        st.markdown(
-            f"""
-            <div class="metric-card">
-                <div class="metric-title">Missing Values Latest Row</div>
-                <div class="metric-value">{missing_latest}</div>
-                <div class="metric-delta">Blank retained</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    with c4:
-        st.markdown(
-            f"""
-            <div class="metric-card">
-                <div class="metric-title">Display Date Format</div>
-                <div class="metric-value">{latest_date}</div>
-                <div class="metric-delta">dd/mmm/yyyy</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    st.markdown('<div class="section-title">Fixed Benchmark Panel</div>', unsafe_allow_html=True)
-
-    fixed_cols = st.columns(4)
-
-    for i, index_name in enumerate(FIXED_INDICES):
-        value, delta = latest_value_and_delta(df, index_name)
-
-        with fixed_cols[i]:
-            st.markdown(
-                f"""
-                <div class="metric-card">
-                    <div class="metric-title">{index_name.replace(" (USD/t)", "")}</div>
-                    <div class="metric-value">{value}</div>
-                    <div class="metric-delta">{delta}</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-with tab_sheet:
-    st.markdown('<div class="section-title">Last 15 Days Pink Sheet Browser</div>', unsafe_allow_html=True)
-
-    default_cols = ["Date"] + [c for c in FIXED_INDICES if c in display_df.columns]
-
-    selected_cols = st.multiselect(
-        "Choose columns to display",
-        options=display_df.columns.tolist(),
-        default=default_cols,
-    )
-
-    if not selected_cols:
-        selected_cols = default_cols
-
-    compact_df = display_df[selected_cols].head(15)
-
-    column_config = {}
-    for col in compact_df.columns:
-        column_config[col] = st.column_config.TextColumn(
-            col,
-            width="small",
-        )
-
+with st.expander("Full Pink Sheet"):
     st.dataframe(
-        compact_df,
+        display_df.head(15),
         use_container_width=True,
         hide_index=True,
-        height=430,
-        column_config=column_config,
+        height=420,
     )
-
-with tab_analytics:
-    st.markdown('<div class="section-title">Fixed Graphs</div>', unsafe_allow_html=True)
-
-    g1, g2 = st.columns(2)
-
-    with g1:
-        fig = make_chart(df, FIXED_INDICES[0], FIXED_INDICES[0])
-        if fig is not None:
-            st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.info(f"No numeric data available for {FIXED_INDICES[0]}")
-
-    with g2:
-        fig = make_chart(df, FIXED_INDICES[1], FIXED_INDICES[1])
-        if fig is not None:
-            st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.info(f"No numeric data available for {FIXED_INDICES[1]}")
-
-    g3, g4 = st.columns(2)
-
-    with g3:
-        fig = make_chart(df, FIXED_INDICES[2], FIXED_INDICES[2])
-        if fig is not None:
-            st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.info(f"No numeric data available for {FIXED_INDICES[2]}")
-
-    with g4:
-        fig = make_chart(df, FIXED_INDICES[3], FIXED_INDICES[3])
-        if fig is not None:
-            st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.info(f"No numeric data available for {FIXED_INDICES[3]}")
-
-    st.markdown('<div class="section-title">Dropdown Analytics</div>', unsafe_allow_html=True)
-
-    left, right = st.columns(2)
-
-    with left:
-        selected_index = st.selectbox(
-            "Single Index",
-            available_indices,
-            index=available_indices.index(FIXED_INDICES[0]) if FIXED_INDICES[0] in available_indices else 0,
-        )
-
-        fig = make_chart(df, selected_index, selected_index)
-
-        if fig is not None:
-            st.plotly_chart(fig, use_container_width=True)
-        else:
-            st.info("No numeric data available for selected index.")
-
-    with right:
-        default_comp = [x for x in FIXED_INDICES if x in available_indices][:2]
-
-        comparison_indices = st.multiselect(
-            "Compare Indices",
-            available_indices,
-            default=default_comp,
-            max_selections=5,
-        )
-
-        if comparison_indices:
-            comp_df = df[["Date"] + comparison_indices].copy()
-
-            for col in comparison_indices:
-                comp_df[col] = pd.to_numeric(comp_df[col], errors="coerce")
-
-            comp_df = comp_df.sort_values("Date")
-            long_df = comp_df.melt(id_vars="Date", var_name="Index", value_name="Value").dropna()
-
-            if not long_df.empty:
-                fig = px.line(
-                    long_df,
-                    x="Date",
-                    y="Value",
-                    color="Index",
-                    markers=True,
-                    title="Comparison",
-                )
-                fig.update_layout(
-                    height=300,
-                    margin=dict(l=10, r=10, t=36, b=10),
-                    font=dict(family="Arial Narrow", size=11),
-                    title=dict(font=dict(size=14)),
-                    xaxis_title="",
-                    yaxis_title="USD/t",
-                    plot_bgcolor="white",
-                    paper_bgcolor="white",
-                )
-                fig.update_xaxes(showgrid=True, gridcolor="#eeeeee")
-                fig.update_yaxes(showgrid=True, gridcolor="#eeeeee")
-                st.plotly_chart(fig, use_container_width=True)
-            else:
-                st.info("No numeric data available for selected comparison indices.")
-
-with tab_master:
-    st.markdown('<div class="section-title">Master Index List</div>', unsafe_allow_html=True)
-
-    if master.empty:
-        st.info("Master index file not found.")
-    else:
-        section_options = ["All"] + sorted(master["Section"].dropna().astype(str).unique().tolist()) if "Section" in master.columns else ["All"]
-        selected_section = st.selectbox("Filter by section", section_options)
-
-        view = master.copy()
-        if selected_section != "All" and "Section" in view.columns:
-            view = view[view["Section"].astype(str) == selected_section]
-
-        st.dataframe(
-            view,
-            use_container_width=True,
-            hide_index=True,
-            height=520,
-        )
