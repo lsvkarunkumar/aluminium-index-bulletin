@@ -19,49 +19,70 @@ SMM_EMAIL = os.getenv("SMM_EMAIL", "")
 SMM_PASSWORD = os.getenv("SMM_PASSWORD", "")
 
 
-SINGLE_CAPTURE = {
-    "LME 3M Aluminium (USD/t)": ["LMEselect Aluminum 3 Month", "LMEselect Aluminum Month"],
-    "SMM A00 Aluminum Ingot (USD/t)": ["SMM A00 Aluminum Ingot"],
+SINGLE_ITEMS = {
+    "LME 3M Aluminium (USD/t)": {
+        "section": "LME",
+        "item": "LMEselect Aluminum 3 Month",
+    },
+    "SMM A00 Aluminum Ingot (USD/t)": {
+        "section": "Aluminum Ingot",
+        "item": "SMM A00 Aluminum Ingot",
+    },
 }
 
 
 GROUPS = {
-    "Alumina": [
-        "SMM Alumina Index (Al₂O₃≥98.5%)",
-        "SMM Shandong Alumina (Al₂O₃≥98.5%)",
-        "SMM Henan Alumina (Al₂O₃≥98.5%)",
-        "SMM Shanxi Alumina (Al₂O₃≥98.5%)",
-        "SMM Guangxi Alumina (Al₂O₃≥98.5%)",
-        "SMM Guizhou Alumina (Al₂O₃≥98.5%)",
-    ],
-    "Prebaked Anode": [
-        "East China Prebaked Anode",
-        "Central China Prebaked Anode",
-        "Southwest China Prebaked Anode",
-        "Northwest China Prebaked Anode",
-        "Prebaked Anode for High-Purity Aluminum FOB China",
-        "Prebaked Anode for High-end Aluminum FOB China",
-    ],
-    "Calcined Petroleum Coke": [
-        "Northeast China Low-Sulfur Calcined Petroleum Coke",
-        "East China Medium-Sulfur Ordinary Calcined Petroleum Coke",
-        "East China Medium-Sulfur Low Vanadium Calcined Petroleum Coke",
-        "East China Medium-High Sulfur Ordinary Calcined Petroleum Coke",
-        "East China Medium-High Sulfur Low Vanadium Calcined Petroleum Coke",
-        "East China High Sulfur Ordinary Calcined Petroleum Coke",
-    ],
-    "Coal Tar Pitch": [
-        "Coal tar pitch (Shandong)",
-        "Coal tar pitch (Shanxi)",
-        "Coal tar pitch (Hebei)",
-    ],
-    "Caustic Soda": [
-        "Shandong 32% Ion-Membrane Process Caustic Soda Solution POT",
-        "Shandong 50% Ion-Membrane Process Caustic Soda Solution POT",
-        "Henan 32% Membrane Grade Liquid Caustic Soda",
-        "Shanxi 32% Membrane Grade Liquid Caustic Soda",
-        "Guangxi 32% Membrane Grade Liquid Caustic Soda",
-    ],
+    "Alumina": {
+        "section": "SMM Aluminum Index",
+        "items": [
+            "SMM Alumina Index (Al₂O₃≥98.5%)",
+            "SMM Shandong Alumina Index (Al₂O₃≥98.5%)",
+            "SMM Henan Alumina Index (Al₂O₃≥98.5%)",
+            "SMM Shanxi Alumina Index (Al₂O₃≥98.5%)",
+            "SMM Guangxi Alumina Index (Al₂O₃≥98.5%)",
+            "SMM Guizhou Alumina Index (Al₂O₃≥98.5%)",
+        ],
+    },
+    "Prebaked Anode": {
+        "section": "Prebaked Anode",
+        "items": [
+            "East China Prebaked Anode",
+            "Central China Prebaked Anode",
+            "Southwest China Prebaked Anode",
+            "Northwest China Prebaked Anode",
+            "Prebaked Anode for High-Purity Aluminum FOB China",
+            "Prebaked Anode for High-end Aluminum FOB China",
+        ],
+    },
+    "Calcined Petroleum Coke": {
+        "section": "Calcined Petroleum Coke",
+        "items": [
+            "Northeast China Low-Sulfur Calcined Petroleum Coke",
+            "East China Medium-Sulfur Ordinary Calcined Petroleum Coke",
+            "East China Medium-Sulfur Low Vanadium Calcined Petroleum Coke",
+            "East China Medium-High Sulfur Ordinary Calcined Petroleum Coke",
+            "East China Medium-High Sulfur Low Vanadium Calcined Petroleum Coke",
+            "East China High Sulfur Ordinary Calcined Petroleum Coke",
+        ],
+    },
+    "Coal Tar Pitch": {
+        "section": "Coal Tar Pitch",
+        "items": [
+            "Coal tar pitch (Shandong)",
+            "Coal tar pitch (Shanxi)",
+            "Coal tar pitch (Hebei)",
+        ],
+    },
+    "Caustic Soda": {
+        "section": "Caustic Soda",
+        "items": [
+            "Shandong 32% Ion-Membrane Process Caustic Soda Solution POT",
+            "Shandong 50% Ion-Membrane Process Caustic Soda Solution POT",
+            "Henan 32% Membrane Grade Liquid Caustic Soda",
+            "Shanxi 32% Membrane Grade Liquid Caustic Soda",
+            "Guangxi 32% Membrane Grade Liquid Caustic Soda",
+        ],
+    },
 }
 
 
@@ -74,6 +95,26 @@ def to_float(value):
         return float(str(value).replace(",", "").replace("+", "").strip())
     except Exception:
         return None
+
+
+def is_date_line(text):
+    return bool(re.search(r"\d{1,2}/\d{1,2}/\d{4}", str(text)))
+
+
+def is_unit_line(text):
+    t = str(text).lower()
+    return any(
+        u in t
+        for u in [
+            "usd/tonne",
+            "usd/dmt",
+            "usd/kg",
+            "cny/mt",
+            "us cent/lb",
+            "thb/kg",
+            "myr/kg",
+        ]
+    )
 
 
 def login_if_possible(page):
@@ -119,8 +160,135 @@ def login_if_possible(page):
         print(f"Login attempt skipped/failed: {e}")
 
 
-def fetch_visible_lines():
+def click_section(page, section_name):
+    print(f"Opening section: {section_name}")
+
+    try:
+        locator = page.locator(f"xpath=//*[normalize-space(text())='{section_name}']")
+        count = locator.count()
+
+        if count == 0:
+            print(f"Section not found: {section_name}")
+            return False
+
+        # Prefer first visible item from left menu / visible page
+        for i in range(count):
+            item = locator.nth(i)
+            try:
+                if item.is_visible():
+                    item.scroll_into_view_if_needed(timeout=5000)
+                    item.click(timeout=5000)
+                    page.wait_for_timeout(3500)
+                    return True
+            except Exception:
+                pass
+
+        locator.first.click(timeout=5000)
+        page.wait_for_timeout(3500)
+        return True
+
+    except Exception as e:
+        print(f"Could not open section {section_name}: {e}")
+        return False
+
+
+def get_page_lines(page):
+    text = page.locator("body").inner_text(timeout=30000)
+    lines = [clean(x) for x in text.splitlines()]
+    return [x for x in lines if x]
+
+
+def extract_item_average_from_lines(lines, item_name):
+    """
+    Expected visible table structure:
+    Item Name
+    SMM Code
+    Unit
+    High
+    Low
+    Average / Index / Latest
+    Change
+    Date
+
+    For normal table: take 3rd numeric after Unit = Average.
+    For index/LME style: take 1st numeric after Unit if only Index/Latest exists.
+    """
+    item_lower = item_name.strip().lower()
+
+    for i, line in enumerate(lines):
+        if line.strip().lower() == item_lower:
+            block = lines[i : min(i + 16, len(lines))]
+
+            unit_seen = False
+            nums_after_unit = []
+
+            for b in block[1:]:
+                if re.search(r"SMM-[A-Z]+-[A-Z]+-\d+", b):
+                    continue
+
+                if is_unit_line(b):
+                    unit_seen = True
+                    continue
+
+                if is_date_line(b):
+                    break
+
+                if not unit_seen:
+                    continue
+
+                val = to_float(b)
+
+                if val is not None:
+                    nums_after_unit.append(val)
+
+            # High / Low / Average / Change
+            if len(nums_after_unit) >= 3:
+                return nums_after_unit[2]
+
+            # Index / Change or Latest / Change
+            if len(nums_after_unit) >= 1:
+                return nums_after_unit[0]
+
+    return None
+
+
+def capture_single(page, section, item):
+    click_section(page, section)
+    lines = get_page_lines(page)
+    return extract_item_average_from_lines(lines, item)
+
+
+def capture_group(page, group_name, section, items):
+    click_section(page, section)
+    lines = get_page_lines(page)
+
+    rows = []
+    values = []
+
+    for item in items:
+        value = extract_item_average_from_lines(lines, item)
+
+        rows.append(
+            {
+                "Group": group_name,
+                "Item": item,
+                "Value": value,
+            }
+        )
+
+        if value is not None:
+            values.append(value)
+
+    avg = sum(values) / len(values) if values else None
+    return avg, rows
+
+
+def main():
     DATA_DIR.mkdir(exist_ok=True)
+    today = datetime.today().strftime("%Y-%m-%d")
+
+    dashboard_row = {"Date": today}
+    granular_rows = []
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -141,9 +309,27 @@ def fetch_visible_lines():
         page.goto(URL, wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(10000)
 
-        for _ in range(12):
-            page.mouse.wheel(0, 1500)
-            page.wait_for_timeout(900)
+        # Single values
+        for col, cfg in SINGLE_ITEMS.items():
+            dashboard_row[col] = capture_single(page, cfg["section"], cfg["item"])
+
+        # Group values
+        for group_name, cfg in GROUPS.items():
+            avg, rows = capture_group(page, group_name, cfg["section"], cfg["items"])
+            dashboard_row[f"{group_name} Avg (USD/t)"] = avg
+
+            for row in rows:
+                granular_rows.append(
+                    {
+                        "Date": today,
+                        "Group": row["Group"],
+                        "Item": row["Item"],
+                        "Value": row["Value"],
+                        "Currency": "USD",
+                        "Unit": "t",
+                        "Source": URL,
+                    }
+                )
 
         text = page.locator("body").inner_text(timeout=30000)
         html = page.content()
@@ -152,136 +338,6 @@ def fetch_visible_lines():
         DEBUG_HTML_FILE.write_text(html, encoding="utf-8")
 
         browser.close()
-
-    lines = [clean(x) for x in text.splitlines()]
-    lines = [x for x in lines if x]
-
-    return lines
-
-
-def extract_top_smm_a00(lines):
-    for i, line in enumerate(lines):
-        if line.strip().lower() == "aluminum ingot / smm a00 aluminum ingot":
-            for j in range(i + 1, min(i + 8, len(lines))):
-                val = to_float(lines[j])
-                if val is not None and val > 500:
-                    return val
-    return None
-
-
-def extract_single_from_lines(lines, keywords):
-    for keyword in keywords:
-        if keyword == "SMM A00 Aluminum Ingot":
-            val = extract_top_smm_a00(lines)
-            if val is not None:
-                return val
-
-        for i, line in enumerate(lines):
-            if keyword.lower() in line.lower():
-                for j in range(i + 1, min(i + 10, len(lines))):
-                    val = to_float(lines[j])
-                    if val is not None and val > 500:
-                        return val
-
-    return None
-
-
-def find_item_block(lines, item_name):
-    for i, line in enumerate(lines):
-        if line.strip().lower() == item_name.strip().lower():
-            return lines[i : min(i + 12, len(lines))]
-    return []
-
-
-def extract_price_from_item_block(block):
-    if not block:
-        return None
-
-    useful_numbers = []
-
-    for line in block:
-        if re.search(r"SMM-[A-Z]+-[A-Z]+-\d+", line):
-            continue
-
-        if "/" in line and re.search(r"\d{1,2}/\d{1,2}/\d{4}", line):
-            continue
-
-        if any(
-            unit in line.lower()
-            for unit in [
-                "usd/tonne",
-                "usd/dmt",
-                "usd/kg",
-                "cny/mt",
-                "thb/kg",
-                "myr/kg",
-                "us cent/lb",
-            ]
-        ):
-            continue
-
-        val = to_float(line)
-
-        if val is None:
-            continue
-
-        useful_numbers.append(val)
-
-    if len(useful_numbers) >= 3:
-        return useful_numbers[2]
-
-    return None
-
-
-def extract_group_values(lines, group_name, items):
-    rows = []
-    values = []
-
-    for item in items:
-        block = find_item_block(lines, item)
-        value = extract_price_from_item_block(block)
-
-        rows.append(
-            {
-                "Group": group_name,
-                "Item": item,
-                "Value": value,
-            }
-        )
-
-        if value is not None:
-            values.append(value)
-
-    avg = sum(values) / len(values) if values else None
-    return avg, rows
-
-
-def main():
-    lines = fetch_visible_lines()
-    today = datetime.today().strftime("%Y-%m-%d")
-
-    dashboard_row = {"Date": today}
-    granular_rows = []
-
-    for column_name, keywords in SINGLE_CAPTURE.items():
-        dashboard_row[column_name] = extract_single_from_lines(lines, keywords)
-
-    for group_name, items in GROUPS.items():
-        avg, rows = extract_group_values(lines, group_name, items)
-        dashboard_row[f"{group_name} Avg (USD/t)"] = avg
-
-        for row in rows:
-            granular_rows.append(
-                {
-                    "Date": today,
-                    "Group": row["Group"],
-                    "Item": row["Item"],
-                    "Value": row["Value"],
-                    "Currency": "USD",
-                    "Unit": "t",
-                    "Source": URL,
-                }
-            )
 
     dashboard_df = pd.DataFrame([dashboard_row])
     granular_df = pd.DataFrame(granular_rows)
