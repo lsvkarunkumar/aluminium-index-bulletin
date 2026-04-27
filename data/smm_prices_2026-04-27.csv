@@ -1,0 +1,4 @@
+run_time_utc,product,url,price_low,price_high,price_mid,raw_match,status
+2026-04-27T15:23:49.336750+00:00,Aluminum Ingot,https://www.metal.com/Aluminum?currency_type=2#AluminumIngot,,,,,NOT_FOUND
+2026-04-27T15:23:49.336750+00:00,Bauxite,https://www.metal.com/Aluminum?currency_type=2#Bauxite,,,,,NOT_FOUND
+2026-04-27T15:23:49.336750+00:00,Alumina,https://www.metal.com/Aluminum?currency_type=2#Alumina,,,,,NOT_FOUND
