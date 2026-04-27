@@ -4060,7 +4060,7 @@ LMEselect Aluminum 3 Month
 	
 	
 	
-+4
+-3
 	
 SHFE/LME
 	Name	Open	High	Low	Latest	Change
@@ -4265,3 +4265,14 @@ Drop us a line service.en@smm.cn
 +86 021 5155-0306
 Live chat via WhatsApp
 Copyright © 2026 SMM Information & Technology Co., Ltd. All rights reserved.
+The Leading
+Metals Information Provider
+Welcome to SMM
+Email Address
+Forgot password?
+Password
+Remember me
+Sign in
+Don't have an accountSign up
+Or
+Continue with Google
