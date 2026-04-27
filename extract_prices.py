@@ -172,22 +172,22 @@ def click_section(page, section_name):
 
 def extract_item_from_table(page, item_name):
     """
-    Reads actual table rows, not body text.
+    Reads React/virtual-grid rows using role selectors.
 
-    Expected columns:
+    Expected visual columns:
     Name | Unit | High | Low | Average/Index/Latest | Change | Date
 
     Captures:
-    - Average column where present
-    - Index/Latest column for index/LME sections
+    - Average = 3rd numeric value in row
+    - Index/Latest = 1st numeric value when row has index/latest format
     """
-    possible_rows = [
-        "table tbody tr",
+    row_selectors = [
         "div[role='row']",
         ".ant-table-row",
+        "[class*='table'] [class*='row']",
     ]
 
-    for row_selector in possible_rows:
+    for row_selector in row_selectors:
         rows = page.locator(row_selector)
         count = rows.count()
 
@@ -203,21 +203,21 @@ def extract_item_from_table(page, item_name):
                 if item_name.lower() not in row_text.lower():
                     continue
 
-                cells = row.locator("td")
-                cell_count = cells.count()
-
                 cell_texts = []
 
-                if cell_count > 0:
-                    for c in range(cell_count):
-                        cell_texts.append(cells.nth(c).inner_text(timeout=1000).strip())
+                role_cells = row.locator("div[role='cell']")
+                td_cells = row.locator("td")
+
+                if role_cells.count() > 0:
+                    for c in range(role_cells.count()):
+                        cell_texts.append(role_cells.nth(c).inner_text(timeout=1000).strip())
+
+                elif td_cells.count() > 0:
+                    for c in range(td_cells.count()):
+                        cell_texts.append(td_cells.nth(c).inner_text(timeout=1000).strip())
+
                 else:
-                    # fallback for div-based table rows
-                    cell_texts = [
-                        x.strip()
-                        for x in row_text.splitlines()
-                        if x.strip()
-                    ]
+                    cell_texts = [x.strip() for x in row_text.splitlines() if x.strip()]
 
                 numeric_values = []
 
@@ -226,16 +226,17 @@ def extract_item_from_table(page, item_name):
                     if val is not None:
                         numeric_values.append(val)
 
-                # For Name | Unit | High | Low | Average | Change | Date:
-                # numeric values should usually be [High, Low, Average, Change]
+                # Name | Unit | High | Low | Average | Change | Date
                 if len(numeric_values) >= 3:
-                    return numeric_values[2]
+                    avg = numeric_values[2]
+                    if avg > 50:
+                        return avg
 
-                # For index/LME style: Name | Unit | Index/Latest | Change | Date
+                # Index/LME style: Name | Unit | Index/Latest | Change | Date
                 if len(numeric_values) >= 1:
-                    first_val = numeric_values[0]
-                    if abs(first_val) > 50:
-                        return first_val
+                    first = numeric_values[0]
+                    if abs(first) > 50:
+                        return first
 
             except Exception:
                 continue
@@ -288,7 +289,8 @@ def main():
             viewport={"width": 1600, "height": 1400},
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 Chrome/120 Safari/537.36"
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0 Safari/537.36"
             ),
         )
 
