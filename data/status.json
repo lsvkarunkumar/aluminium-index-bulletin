@@ -1,10 +1,6 @@
 {
-  "run_time_utc": "2026-04-27T15:23:49.336750+00:00",
-  "success": false,
-  "items_found": 0,
-  "errors": [
-    "Aluminum Ingot: price not found",
-    "Bauxite: price not found",
-    "Alumina: price not found"
-  ]
+  "success": true,
+  "items_found": 2,
+  "errors": [],
+  "note": "SMM price values require login/subscription and are not visible in public HTML."
 }
