@@ -86,35 +86,14 @@ GROUPS = {
 }
 
 
-def clean(text):
-    return re.sub(r"\s+", " ", str(text)).strip()
-
-
 def to_float(value):
     try:
-        return float(str(value).replace(",", "").replace("+", "").strip())
+        cleaned = str(value).replace(",", "").replace("+", "").strip()
+        if cleaned in ["", "-", "--", "Sign In"]:
+            return None
+        return float(cleaned)
     except Exception:
         return None
-
-
-def is_date_line(text):
-    return bool(re.search(r"\d{1,2}/\d{1,2}/\d{4}", str(text)))
-
-
-def is_unit_line(text):
-    t = str(text).lower()
-    return any(
-        u in t
-        for u in [
-            "usd/tonne",
-            "usd/dmt",
-            "usd/kg",
-            "cny/mt",
-            "us cent/lb",
-            "thb/kg",
-            "myr/kg",
-        ]
-    )
 
 
 def login_if_possible(page):
@@ -177,13 +156,13 @@ def click_section(page, section_name):
                 if item.is_visible():
                     item.scroll_into_view_if_needed(timeout=5000)
                     item.click(timeout=5000)
-                    page.wait_for_timeout(3500)
+                    page.wait_for_timeout(4000)
                     return True
             except Exception:
                 pass
 
         locator.first.click(timeout=5000)
-        page.wait_for_timeout(3500)
+        page.wait_for_timeout(4000)
         return True
 
     except Exception as e:
@@ -191,83 +170,94 @@ def click_section(page, section_name):
         return False
 
 
-def get_page_lines(page):
-    text = page.locator("body").inner_text(timeout=30000)
-    lines = [clean(x) for x in text.splitlines()]
-    return [x for x in lines if x]
-
-
-def extract_item_average_from_lines(lines, item_name):
+def extract_item_from_table(page, item_name):
     """
-    Expected visible table structure:
-    Item Name
-    SMM Code
-    Unit
-    High
-    Low
-    Average / Index / Latest
-    Change
-    Date
+    Reads actual table rows, not body text.
 
-    Strict rule:
-    - If High/Low/Average exist, capture Average = 3rd number after Unit.
-    - Do NOT capture Change values.
-    - If Average is not visible, return None.
+    Expected columns:
+    Name | Unit | High | Low | Average/Index/Latest | Change | Date
+
+    Captures:
+    - Average column where present
+    - Index/Latest column for index/LME sections
     """
-    item_lower = item_name.strip().lower()
+    possible_rows = [
+        "table tbody tr",
+        "div[role='row']",
+        ".ant-table-row",
+    ]
 
-    for i, line in enumerate(lines):
-        if line.strip().lower() == item_lower:
-            block = lines[i : min(i + 18, len(lines))]
+    for row_selector in possible_rows:
+        rows = page.locator(row_selector)
+        count = rows.count()
 
-            unit_seen = False
-            nums_after_unit = []
+        if count == 0:
+            continue
 
-            for b in block[1:]:
-                if re.search(r"SMM-[A-Z]+-[A-Z]+-\d+", b):
+        for i in range(count):
+            row = rows.nth(i)
+
+            try:
+                row_text = row.inner_text(timeout=1500)
+
+                if item_name.lower() not in row_text.lower():
                     continue
 
-                if is_unit_line(b):
-                    unit_seen = True
-                    continue
+                cells = row.locator("td")
+                cell_count = cells.count()
 
-                if is_date_line(b):
-                    break
+                cell_texts = []
 
-                if not unit_seen:
-                    continue
+                if cell_count > 0:
+                    for c in range(cell_count):
+                        cell_texts.append(cells.nth(c).inner_text(timeout=1000).strip())
+                else:
+                    # fallback for div-based table rows
+                    cell_texts = [
+                        x.strip()
+                        for x in row_text.splitlines()
+                        if x.strip()
+                    ]
 
-                val = to_float(b)
+                numeric_values = []
 
-                if val is not None:
-                    nums_after_unit.append(val)
+                for txt in cell_texts:
+                    val = to_float(txt)
+                    if val is not None:
+                        numeric_values.append(val)
 
-            if len(nums_after_unit) >= 3:
-                avg = nums_after_unit[2]
+                # For Name | Unit | High | Low | Average | Change | Date:
+                # numeric values should usually be [High, Low, Average, Change]
+                if len(numeric_values) >= 3:
+                    return numeric_values[2]
 
-                if avg > 50:
-                    return avg
+                # For index/LME style: Name | Unit | Index/Latest | Change | Date
+                if len(numeric_values) >= 1:
+                    first_val = numeric_values[0]
+                    if abs(first_val) > 50:
+                        return first_val
 
-            return None
+            except Exception:
+                continue
 
     return None
 
 
 def capture_single(page, section, item):
     click_section(page, section)
-    lines = get_page_lines(page)
-    return extract_item_average_from_lines(lines, item)
+    page.wait_for_timeout(3000)
+    return extract_item_from_table(page, item)
 
 
 def capture_group(page, group_name, section, items):
     click_section(page, section)
-    lines = get_page_lines(page)
+    page.wait_for_timeout(3000)
 
     rows = []
     values = []
 
     for item in items:
-        value = extract_item_average_from_lines(lines, item)
+        value = extract_item_from_table(page, item)
 
         rows.append(
             {
