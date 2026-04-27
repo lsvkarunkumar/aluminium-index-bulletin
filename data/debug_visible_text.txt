@@ -3925,7 +3925,7 @@ al2605
 	
 	
 	
--90
+-125
 	
 
 
@@ -3937,7 +3937,7 @@ M
 	
 	
 	
--90
+-150
 	
 
 
@@ -3948,7 +3948,7 @@ al2607
 	
 	
 	
--65
+-125
 	
 
 
@@ -3959,7 +3959,7 @@ al2608
 	
 	
 	
--80
+-100
 	
 
 
@@ -3970,7 +3970,7 @@ al2609
 	
 	
 	
--50
+-25,055
 	
 
 
@@ -3981,7 +3981,7 @@ al2610
 	
 	
 	
--45
+-25,035
 	
 
 
@@ -3992,7 +3992,7 @@ al2611
 	
 	
 	
--45
+-25,040
 	
 
 
@@ -4003,7 +4003,7 @@ al2612
 	
 	
 	
--30
+-105
 	
 
 
@@ -4014,7 +4014,7 @@ al2701
 	
 	
 	
--20
+-25,010
 	
 
 
@@ -4025,7 +4025,7 @@ al2702
 	
 	
 	
--5
+-25,015
 	
 
 
@@ -4036,7 +4036,7 @@ al2703
 	
 	
 	
--15
+-25,015
 	
 
 
@@ -4047,7 +4047,7 @@ al2704
 	
 	
 	
-+60
+-25,010
 	
 LME
 	Name	Unit	Open	High	Low	Latest	Change
@@ -4060,7 +4060,7 @@ LMEselect Aluminum 3 Month
 	
 	
 	
--3
+-2.5
 	
 SHFE/LME
 	Name	Open	High	Low	Latest	Change
@@ -4073,7 +4073,7 @@ SMM Aluminum Spot/LME 3M
 	
 	
 	
--0.0296
+-0.0012
 
 
 	
@@ -4083,7 +4083,7 @@ SHFE.AL2605/LME 3M
 	
 	
 	
--0.0325
+-0.0012
 
 
 	
@@ -4093,7 +4093,7 @@ SHFE.AL2606/LME 3M
 	
 	
 	
--0.027
+-0.0054
 
 
 	
@@ -4103,7 +4103,7 @@ SHFE.AL2607/LME 3M
 	
 	
 	
--0.0242
+-0.0053
 
 
 	
@@ -4113,7 +4113,7 @@ SHFE.AL2608/LME 3M
 	
 	
 	
--0.0299
++0.0058
 
 
 	
@@ -4153,7 +4153,7 @@ SHFE.AL2612/LME 3M
 	
 	
 	
--0.0215
+-0.0067
 Import Arbitrage
 	Name	Unit	Open	High	Low	Latest	Change
 
@@ -4165,7 +4165,7 @@ Aluminum import arbitrage(Spot)
 	
 	
 	
--115.7583
++17.5009
 
 
 	
@@ -4175,7 +4175,7 @@ Aluminum import arbitrage(AL2605)
 	
 	
 	
--131.7092
++17.4606
 
 
 	
@@ -4185,7 +4185,7 @@ Aluminum import arbitrage(AL2606)
 	
 	
 	
--88.0269
++2.2797
 
 
 	
@@ -4195,7 +4195,7 @@ Aluminum import arbitrage(AL2607)
 	
 	
 	
--60.2931
++4.7262
 
 
 	
@@ -4205,7 +4205,7 @@ Aluminum import arbitrage(AL2608)
 	
 	
 	
--79.8286
++51.4329
 
 
 	
@@ -4245,7 +4245,7 @@ Aluminum import arbitrage(AL2612)
 	
 	
 	
--34.7344
++14.5402
 Shanghai Metals Market
 
 Notice: By accessing this site you agree that you will not copy or reproduce any part of its contents (including, but not limited to, single prices, graphs or news content) in any form or for any purpose whatsoever without the prior written consent of the publisher.
