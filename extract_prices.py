@@ -241,15 +241,16 @@ def extract_item_average_from_lines(lines, item_name):
                 if val is not None:
                     nums_after_unit.append(val)
 
-            # High / Low / Average / Change
-            if len(nums_after_unit) >= 3:
-                return nums_after_unit[2]
+           # Strict: only accept Average (3rd value)
+if len(nums_after_unit) >= 3:
+    avg = nums_after_unit[2]
 
-            # Index / Change or Latest / Change
-            if len(nums_after_unit) >= 1:
-                return nums_after_unit[0]
+    # Reject obvious wrong values (change-like small numbers)
+    if avg > 50:   # threshold for real price
+        return avg
 
-    return None
+# If we don't get valid average → return None
+return None
 
 
 def capture_single(page, section, item):
