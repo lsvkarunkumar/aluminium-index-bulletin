@@ -1,7 +1,4 @@
-streamlit
-pandas
-openpyxl
-plotly
 requests
 beautifulsoup4
-playwright
+pandas
+lxml
