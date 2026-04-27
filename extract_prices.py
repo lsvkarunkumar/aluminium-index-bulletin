@@ -13,6 +13,7 @@ DATA_DIR = Path("data")
 DASHBOARD_FILE = DATA_DIR / "latest_dashboard_capture.csv"
 GRANULAR_FILE = DATA_DIR / "latest_granular_capture.csv"
 DEBUG_TEXT_FILE = DATA_DIR / "debug_visible_text.txt"
+DEBUG_HTML_FILE = DATA_DIR / "debug_page.html"
 
 SMM_EMAIL = os.getenv("SMM_EMAIL", "")
 SMM_PASSWORD = os.getenv("SMM_PASSWORD", "")
@@ -101,7 +102,6 @@ def login_if_possible(page):
         for btn in buttons:
             try:
                 txt = btn.inner_text(timeout=1000).strip().lower()
-
                 if txt in ["sign in", "login", "log in"]:
                     btn.click(timeout=3000)
                     clicked = True
@@ -146,10 +146,12 @@ def fetch_visible_lines():
             page.wait_for_timeout(900)
 
         text = page.locator("body").inner_text(timeout=30000)
+        html = page.content()
+
+        DEBUG_TEXT_FILE.write_text(text, encoding="utf-8")
+        DEBUG_HTML_FILE.write_text(html, encoding="utf-8")
 
         browser.close()
-
-    DEBUG_TEXT_FILE.write_text(text, encoding="utf-8")
 
     lines = [clean(x) for x in text.splitlines()]
     lines = [x for x in lines if x]
