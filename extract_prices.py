@@ -156,13 +156,26 @@ def click_section(page, section_name):
                 if item.is_visible():
                     item.scroll_into_view_if_needed(timeout=5000)
                     item.click(timeout=5000)
-                    page.wait_for_timeout(4000)
+
+                    # Critical: wait until virtual-table rows are present after section click
+                    try:
+                        page.wait_for_selector("div[role='row']", timeout=15000)
+                    except Exception:
+                        pass
+
+                    page.wait_for_timeout(2500)
                     return True
             except Exception:
                 pass
 
         locator.first.click(timeout=5000)
-        page.wait_for_timeout(4000)
+
+        try:
+            page.wait_for_selector("div[role='row']", timeout=15000)
+        except Exception:
+            pass
+
+        page.wait_for_timeout(2500)
         return True
 
     except Exception as e:
@@ -172,7 +185,7 @@ def click_section(page, section_name):
 
 def extract_item_from_table(page, item_name):
     """
-    Reads React/virtual-grid rows using role selectors.
+    Reads React / virtual-grid rows.
 
     Expected visual columns:
     Name | Unit | High | Low | Average/Index/Latest | Change | Date
@@ -226,13 +239,13 @@ def extract_item_from_table(page, item_name):
                     if val is not None:
                         numeric_values.append(val)
 
-                # Name | Unit | High | Low | Average | Change | Date
+                # Normal table: High, Low, Average, Change
                 if len(numeric_values) >= 3:
                     avg = numeric_values[2]
                     if avg > 50:
                         return avg
 
-                # Index/LME style: Name | Unit | Index/Latest | Change | Date
+                # Index / LME style: Index or Latest, Change
                 if len(numeric_values) >= 1:
                     first = numeric_values[0]
                     if abs(first) > 50:
@@ -245,13 +258,20 @@ def extract_item_from_table(page, item_name):
 
 
 def capture_single(page, section, item):
-    click_section(page, section)
+    opened = click_section(page, section)
+    if not opened:
+        return None
+
     page.wait_for_timeout(3000)
     return extract_item_from_table(page, item)
 
 
 def capture_group(page, group_name, section, items):
-    click_section(page, section)
+    opened = click_section(page, section)
+    if not opened:
+        rows = [{"Group": group_name, "Item": item, "Value": None} for item in items]
+        return None, rows
+
     page.wait_for_timeout(3000)
 
     rows = []
