@@ -40,6 +40,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/latest_dashboard_capture.csv data/latest_granular_capture.csv data/debug_visible_text.txt
-          git diff --cached --quiet || git commit -m "Capture SMM dashboard and granular data"
+          git add data/latest_dashboard_capture.csv data/latest_granular_capture.csv data/debug_visible_text.txt data/debug_page.html
+          git diff --cached --quiet || git commit -m "Capture SMM dashboard granular debug data"
           git push
