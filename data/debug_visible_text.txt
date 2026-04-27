@@ -775,7 +775,7 @@ SMM-AL-RO-017
 	
 	
 0
-	24/04/2026	
+	27/04/2026	
 
 	
 Yuannan Low Carbon 6101/6201 Aluminum Rod Premium
@@ -785,7 +785,7 @@ SMM-AL-RO-018
 	
 	
 0
-	24/04/2026	
+	27/04/2026	
 
 	
 Yuannan Low Carbon 8030 Aluminum Rod Premium
@@ -795,7 +795,7 @@ SMM-AL-RO-019
 	
 	
 0
-	24/04/2026	
+	27/04/2026	
 
 	
 Yunan Low Carbon φ90 Aluminum Billet Premium
@@ -3555,7 +3555,7 @@ SMM-AL-RO-017
 	
 	
 0
-	24/04/2026	
+	27/04/2026	
 
 	
 Yuannan Low Carbon 6101/6201 Aluminum Rod Premium
@@ -3565,7 +3565,7 @@ SMM-AL-RO-018
 	
 	
 0
-	24/04/2026	
+	27/04/2026	
 
 	
 Yuannan Low Carbon 8030 Aluminum Rod Premium
@@ -3575,7 +3575,7 @@ SMM-AL-RO-019
 	
 	
 0
-	24/04/2026	
+	27/04/2026	
 
 	
 Low Carbon 1A60 Aluminum Rod (Guangdong)
@@ -4060,7 +4060,7 @@ LMEselect Aluminum 3 Month
 	
 	
 	
-+18
++13
 	
 SHFE/LME
 	Name	Open	High	Low	Latest	Change
