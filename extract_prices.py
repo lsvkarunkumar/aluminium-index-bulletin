@@ -7,7 +7,7 @@ import pandas as pd
 from playwright.sync_api import sync_playwright
 
 
-URL = "https://www.metal.com/Aluminum?currency_type=2"
+BASE_URL = "https://www.metal.com/Aluminum?currency_type=2"
 
 DATA_DIR = Path("data")
 DASHBOARD_FILE = DATA_DIR / "latest_dashboard_capture.csv"
@@ -21,11 +21,11 @@ SMM_PASSWORD = os.getenv("SMM_PASSWORD", "")
 
 SINGLE_ITEMS = {
     "LME 3M Aluminium (USD/t)": {
-        "section": "LME",
+        "anchor": "#LME",
         "item": "LMEselect Aluminum 3 Month",
     },
     "SMM A00 Aluminum Ingot (USD/t)": {
-        "section": "Aluminum Ingot",
+        "anchor": "#AluminumIngot",
         "item": "SMM A00 Aluminum Ingot",
     },
 }
@@ -33,7 +33,7 @@ SINGLE_ITEMS = {
 
 GROUPS = {
     "Alumina": {
-        "section": "SMM Aluminum Index",
+        "anchor": "#Alumina",
         "items": [
             "SMM Alumina Index (Al₂O₃≥98.5%)",
             "SMM Shandong Alumina Index (Al₂O₃≥98.5%)",
@@ -44,7 +44,7 @@ GROUPS = {
         ],
     },
     "Prebaked Anode": {
-        "section": "Prebaked Anode",
+        "anchor": "#PrebakedAnode",
         "items": [
             "East China Prebaked Anode",
             "Central China Prebaked Anode",
@@ -55,7 +55,7 @@ GROUPS = {
         ],
     },
     "Calcined Petroleum Coke": {
-        "section": "Calcined Petroleum Coke",
+        "anchor": "#CalcinedPetroleumCoke",
         "items": [
             "Northeast China Low-Sulfur Calcined Petroleum Coke",
             "East China Medium-Sulfur Ordinary Calcined Petroleum Coke",
@@ -66,7 +66,7 @@ GROUPS = {
         ],
     },
     "Coal Tar Pitch": {
-        "section": "Coal Tar Pitch",
+        "anchor": "#CoalTarPitch",
         "items": [
             "Coal tar pitch (Shandong)",
             "Coal tar pitch (Shanxi)",
@@ -74,7 +74,7 @@ GROUPS = {
         ],
     },
     "Caustic Soda": {
-        "section": "Caustic Soda",
+        "anchor": "#CausticSoda",
         "items": [
             "Shandong 32% Ion-Membrane Process Caustic Soda Solution POT",
             "Shandong 50% Ion-Membrane Process Caustic Soda Solution POT",
@@ -103,6 +103,9 @@ def login_if_possible(page):
 
     try:
         print("Attempting SMM login...")
+
+        page.goto(BASE_URL, wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(8000)
 
         page.locator("button.signInButton").first.click(timeout=10000)
         page.wait_for_timeout(3000)
@@ -139,48 +142,45 @@ def login_if_possible(page):
         print(f"Login attempt skipped/failed: {e}")
 
 
-def click_section(page, section_name):
-    print(f"Opening section: {section_name}")
+def open_anchor(page, anchor):
+    target_url = BASE_URL + anchor
+    print(f"Opening anchor: {target_url}")
+
+    page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
+    page.wait_for_timeout(7000)
+
+    # Scroll a little to force lazy/virtual table rendering
+    for _ in range(3):
+        page.mouse.wheel(0, 700)
+        page.wait_for_timeout(800)
 
     try:
-        locator = page.locator(f"xpath=//*[normalize-space(text())='{section_name}']")
-        count = locator.count()
+        page.wait_for_selector("div[role='row'], .ant-table-row, table tbody tr", timeout=15000)
+    except Exception:
+        pass
 
-        if count == 0:
-            print(f"Section not found: {section_name}")
-            return False
+    page.wait_for_timeout(2500)
 
-        for i in range(count):
-            item = locator.nth(i)
-            try:
-                if item.is_visible():
-                    item.scroll_into_view_if_needed(timeout=5000)
-                    item.click(timeout=5000)
 
-                    # Critical: wait until virtual-table rows are present after section click
-                    try:
-                        page.wait_for_selector("div[role='row']", timeout=15000)
-                    except Exception:
-                        pass
+def extract_item_from_visible_text(page, item_name):
+    """
+    Fallback for hero / non-table values.
+    Example:
+    Aluminum Ingot / SMM A00 Aluminum Ingot
+    3,207.28
+    USD/tonne
+    """
+    text = page.locator("body").inner_text(timeout=30000)
+    lines = [x.strip() for x in text.splitlines() if x.strip()]
 
-                    page.wait_for_timeout(2500)
-                    return True
-            except Exception:
-                pass
+    for i, line in enumerate(lines):
+        if item_name.lower() in line.lower():
+            for j in range(i + 1, min(i + 10, len(lines))):
+                val = to_float(lines[j])
+                if val is not None and abs(val) > 50:
+                    return val
 
-        locator.first.click(timeout=5000)
-
-        try:
-            page.wait_for_selector("div[role='row']", timeout=15000)
-        except Exception:
-            pass
-
-        page.wait_for_timeout(2500)
-        return True
-
-    except Exception as e:
-        print(f"Could not open section {section_name}: {e}")
-        return False
+    return None
 
 
 def extract_item_from_table(page, item_name):
@@ -197,6 +197,7 @@ def extract_item_from_table(page, item_name):
     row_selectors = [
         "div[role='row']",
         ".ant-table-row",
+        "table tbody tr",
         "[class*='table'] [class*='row']",
     ]
 
@@ -242,7 +243,7 @@ def extract_item_from_table(page, item_name):
                 # Normal table: High, Low, Average, Change
                 if len(numeric_values) >= 3:
                     avg = numeric_values[2]
-                    if avg > 50:
+                    if abs(avg) > 50:
                         return avg
 
                 # Index / LME style: Index or Latest, Change
@@ -257,22 +258,19 @@ def extract_item_from_table(page, item_name):
     return None
 
 
-def capture_single(page, section, item):
-    opened = click_section(page, section)
-    if not opened:
-        return None
+def capture_single(page, anchor, item):
+    open_anchor(page, anchor)
 
-    page.wait_for_timeout(3000)
-    return extract_item_from_table(page, item)
+    value = extract_item_from_table(page, item)
+
+    if value is None:
+        value = extract_item_from_visible_text(page, item)
+
+    return value
 
 
-def capture_group(page, group_name, section, items):
-    opened = click_section(page, section)
-    if not opened:
-        rows = [{"Group": group_name, "Item": item, "Value": None} for item in items]
-        return None, rows
-
-    page.wait_for_timeout(3000)
+def capture_group(page, group_name, anchor, items):
+    open_anchor(page, anchor)
 
     rows = []
     values = []
@@ -314,19 +312,13 @@ def main():
             ),
         )
 
-        page.goto(URL, wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(8000)
-
         login_if_possible(page)
 
-        page.goto(URL, wait_until="domcontentloaded", timeout=60000)
-        page.wait_for_timeout(10000)
-
         for col, cfg in SINGLE_ITEMS.items():
-            dashboard_row[col] = capture_single(page, cfg["section"], cfg["item"])
+            dashboard_row[col] = capture_single(page, cfg["anchor"], cfg["item"])
 
         for group_name, cfg in GROUPS.items():
-            avg, rows = capture_group(page, group_name, cfg["section"], cfg["items"])
+            avg, rows = capture_group(page, group_name, cfg["anchor"], cfg["items"])
             dashboard_row[f"{group_name} Avg (USD/t)"] = avg
 
             for row in rows:
@@ -338,7 +330,7 @@ def main():
                         "Value": row["Value"],
                         "Currency": "USD",
                         "Unit": "t",
-                        "Source": URL,
+                        "Source": BASE_URL + cfg["anchor"],
                     }
                 )
 
