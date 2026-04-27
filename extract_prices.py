@@ -171,7 +171,6 @@ def click_section(page, section_name):
             print(f"Section not found: {section_name}")
             return False
 
-        # Prefer first visible item from left menu / visible page
         for i in range(count):
             item = locator.nth(i)
             try:
@@ -210,14 +209,16 @@ def extract_item_average_from_lines(lines, item_name):
     Change
     Date
 
-    For normal table: take 3rd numeric after Unit = Average.
-    For index/LME style: take 1st numeric after Unit if only Index/Latest exists.
+    Strict rule:
+    - If High/Low/Average exist, capture Average = 3rd number after Unit.
+    - Do NOT capture Change values.
+    - If Average is not visible, return None.
     """
     item_lower = item_name.strip().lower()
 
     for i, line in enumerate(lines):
         if line.strip().lower() == item_lower:
-            block = lines[i : min(i + 16, len(lines))]
+            block = lines[i : min(i + 18, len(lines))]
 
             unit_seen = False
             nums_after_unit = []
@@ -241,16 +242,15 @@ def extract_item_average_from_lines(lines, item_name):
                 if val is not None:
                     nums_after_unit.append(val)
 
-           # Strict: only accept Average (3rd value)
-if len(nums_after_unit) >= 3:
-    avg = nums_after_unit[2]
+            if len(nums_after_unit) >= 3:
+                avg = nums_after_unit[2]
 
-    # Reject obvious wrong values (change-like small numbers)
-    if avg > 50:   # threshold for real price
-        return avg
+                if avg > 50:
+                    return avg
 
-# If we don't get valid average → return None
-return None
+            return None
+
+    return None
 
 
 def capture_single(page, section, item):
@@ -310,11 +310,9 @@ def main():
         page.goto(URL, wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(10000)
 
-        # Single values
         for col, cfg in SINGLE_ITEMS.items():
             dashboard_row[col] = capture_single(page, cfg["section"], cfg["item"])
 
-        # Group values
         for group_name, cfg in GROUPS.items():
             avg, rows = capture_group(page, group_name, cfg["section"], cfg["items"])
             dashboard_row[f"{group_name} Avg (USD/t)"] = avg
