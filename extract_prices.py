@@ -142,6 +142,25 @@ def login_if_possible(page):
         print(f"Login attempt skipped/failed: {e}")
 
 
+def scroll_full_table(page):
+    print("Scrolling table to load all rows...")
+
+    # First scroll page to the anchored table area.
+    for _ in range(4):
+        page.mouse.wheel(0, 900)
+        page.wait_for_timeout(500)
+
+    # Then continue scrolling to force virtual rows to render.
+    for _ in range(18):
+        page.mouse.wheel(0, 1200)
+        page.wait_for_timeout(450)
+
+    # Return slightly upward so current section remains readable.
+    for _ in range(3):
+        page.mouse.wheel(0, -700)
+        page.wait_for_timeout(350)
+
+
 def open_anchor(page, anchor):
     target_url = BASE_URL + anchor
     print(f"Opening anchor: {target_url}")
@@ -149,27 +168,16 @@ def open_anchor(page, anchor):
     page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
     page.wait_for_timeout(7000)
 
-    # Scroll a little to force lazy/virtual table rendering
-    for _ in range(3):
-        page.mouse.wheel(0, 700)
-        page.wait_for_timeout(800)
-
     try:
         page.wait_for_selector("div[role='row'], .ant-table-row, table tbody tr", timeout=15000)
     except Exception:
         pass
 
-    page.wait_for_timeout(2500)
+    scroll_full_table(page)
+    page.wait_for_timeout(2000)
 
 
 def extract_item_from_visible_text(page, item_name):
-    """
-    Fallback for hero / non-table values.
-    Example:
-    Aluminum Ingot / SMM A00 Aluminum Ingot
-    3,207.28
-    USD/tonne
-    """
     text = page.locator("body").inner_text(timeout=30000)
     lines = [x.strip() for x in text.splitlines() if x.strip()]
 
@@ -184,16 +192,6 @@ def extract_item_from_visible_text(page, item_name):
 
 
 def extract_item_from_table(page, item_name):
-    """
-    Reads React / virtual-grid rows.
-
-    Expected visual columns:
-    Name | Unit | High | Low | Average/Index/Latest | Change | Date
-
-    Captures:
-    - Average = 3rd numeric value in row
-    - Index/Latest = 1st numeric value when row has index/latest format
-    """
     row_selectors = [
         "div[role='row']",
         ".ant-table-row",
