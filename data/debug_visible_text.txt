@@ -4060,7 +4060,7 @@ LMEselect Aluminum 3 Month
 	
 	
 	
-+14.5
++18
 	
 SHFE/LME
 	Name	Open	High	Low	Latest	Change
